@@ -2,8 +2,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const customFetch = axios.create({
-    baseURL: "/api/v1",
-    withCredentials: true, // Ensures cookies (if any) are sent with requests
+    baseURL: import.meta.env.VITE_API_URL || "/api/v1",
+    withCredentials: true,
 });
 
 // Helper function to get token from localStorage safely
