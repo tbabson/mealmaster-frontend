@@ -185,11 +185,13 @@ const CreateReminder = () => {
     }
 
     const combined = `${reminderDate} ${reminderTime} ${period}`;
-    const utcTime = moment(combined, "YYYY-MM-DD hh:mm A").utc().toISOString();
+    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const utcTime = moment.tz(combined, "YYYY-MM-DD hh:mm A", userTimezone).utc().toISOString();
 
     const reminderData = {
       meal: meal._id,
       reminderTime: utcTime,
+      timezone: userTimezone,
       notificationMethod,
       isRecurring,
       note,
