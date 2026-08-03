@@ -9,7 +9,7 @@ import {
   subscribeToPushNotifications,
 } from "../Features/Reminder/reminderSlice";
 import customFetch from "../utils/customFetch";
-import { getPushSubscription } from "../utils/push";
+import { getPushSubscription, getExistingPushSubscription } from "../utils/push";
 import Wrapper from "../assets/wrappers/Reminder";
 import {
   FaArrowLeft,
@@ -68,6 +68,9 @@ const CreateReminder = () => {
   const [isCalendarAuthorized, setIsCalendarAuthorized] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [enabledPush, setEnabledPush] = useState(false);
+  const [isCheckingPush, setIsCheckingPush] = useState(true);
+  // What this browser actually holds — used if the server round-trip is stale
+  const [deviceSubscription, setDeviceSubscription] = useState(null);
 
   const { isLoading, pushSubscription } = useSelector(
     (state) => state.reminders
@@ -87,6 +90,27 @@ const CreateReminder = () => {
       }
     }
   }, []);
+
+  // Push is a per-device, one-time opt-in. The browser keeps the subscription
+  // across sessions, so restore it on load instead of asking the user again.
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const existing = await getExistingPushSubscription();
+      if (cancelled) return;
+      if (existing) {
+        setEnabledPush(true);
+        setDeviceSubscription(existing);
+        // Re-assert it server-side: the upsert is idempotent, and this heals
+        // devices whose row was lost or whose keys were rotated.
+        dispatch(subscribeToPushNotifications(existing));
+      }
+      setIsCheckingPush(false);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [dispatch]);
 
   // Check calendar auth
   useEffect(() => {
@@ -135,9 +159,10 @@ const CreateReminder = () => {
   const handleEnablePush = async () => {
     try {
       const subData = await getPushSubscription();
+      setDeviceSubscription(subData);
       await dispatch(subscribeToPushNotifications(subData)).unwrap();
       setEnabledPush(true);
-      toast.success("Push notifications enabled");
+      toast.success("Push notifications enabled on this device");
     } catch (error) {
       toast.error(error?.message || "Failed to enable push notifications");
     }
@@ -150,7 +175,7 @@ const CreateReminder = () => {
       toast.error("Please select a date and time");
       return;
     }
-    if (notificationMethod === "push" && !pushSubscription && !enabledPush) {
+    if (notificationMethod === "push" && !pushSubscription && !deviceSubscription) {
       toast.error("Please enable push notifications first");
       return;
     }
@@ -172,7 +197,9 @@ const CreateReminder = () => {
       note,
       ...(isRecurring && { recurringFrequency }),
       ...(notificationMethod === "push" &&
-        pushSubscription && { subscription: pushSubscription }),
+        (pushSubscription || deviceSubscription) && {
+          subscription: pushSubscription || deviceSubscription,
+        }),
     };
 
     dispatch(createReminder(reminderData))
@@ -322,12 +349,12 @@ const CreateReminder = () => {
               </div>
 
               {/* Push extras */}
-              {notificationMethod === "push" && (
+              {notificationMethod === "push" && !isCheckingPush && (
                 <div className="method-extra">
                   {pushSubscription || enabledPush ? (
                     <div className="connected-status">
                       <FaCheckCircle className="connected-icon" />
-                      Push notifications enabled
+                      Push notifications enabled on this device
                     </div>
                   ) : (
                     <button

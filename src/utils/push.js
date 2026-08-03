@@ -23,6 +23,46 @@ export const isPushSupported = () =>
   "PushManager" in window &&
   "Notification" in window;
 
+const keyMatches = (existing, expected) => {
+  if (!existing) return false;
+  const a = new Uint8Array(existing);
+  return a.length === expected.length && a.every((b, i) => b === expected[i]);
+};
+
+/**
+ * What this device already has, without prompting for anything.
+ *
+ * The browser — not Redux — is the durable record of a push subscription: it
+ * survives reloads, new tabs and restarts. Returns the subscription in the
+ * backend's shape, or null if this device has never opted in (or has since
+ * revoked permission).
+ */
+export const getExistingPushSubscription = async () => {
+  if (!isPushSupported() || !VAPID_PUBLIC_KEY) return null;
+  if (Notification.permission !== "granted") return null;
+
+  try {
+    const registration = await navigator.serviceWorker.ready;
+    const subscription = await registration.pushManager.getSubscription();
+    if (!subscription) return null;
+
+    // Left over from a different VAPID key pair — unusable, ignore it.
+    if (
+      !keyMatches(
+        subscription.options?.applicationServerKey,
+        urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+      )
+    ) {
+      return null;
+    }
+
+    const { endpoint, keys } = subscription.toJSON();
+    return { endpoint, keys };
+  } catch {
+    return null;
+  }
+};
+
 /**
  * Ask for permission and return a push subscription in the exact shape the
  * backend's POST /reminders/subscribe expects: { endpoint, keys: { p256dh, auth } }.
@@ -57,16 +97,9 @@ export const getPushSubscription = async () => {
   let subscription = await registration.pushManager.getSubscription();
 
   // A subscription created with a different VAPID key is unusable — replace it.
-  if (subscription) {
-    const existing = subscription.options?.applicationServerKey;
-    const matches =
-      existing &&
-      new Uint8Array(existing).every((b, i) => b === applicationServerKey[i]) &&
-      new Uint8Array(existing).length === applicationServerKey.length;
-    if (!matches) {
-      await subscription.unsubscribe();
-      subscription = null;
-    }
+  if (subscription && !keyMatches(subscription.options?.applicationServerKey, applicationServerKey)) {
+    await subscription.unsubscribe();
+    subscription = null;
   }
 
   if (!subscription) {
