@@ -39,6 +39,7 @@ import {
   AdminUsers,
   AdminDashboard,
   UpdateMeal,
+  Nutrition,
 } from "./pages";
 
 //Actions
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
       {
         path: "/reminders",
         element: <Reminders />,
+      },
+      {
+        path: "/nutrition",
+        element: <Nutrition />,
       },
     ],
   },

@@ -62,6 +62,9 @@ const Navbar = () => {
               <NavLink to="/orders" className="nav-link" onClick={toggleMenu}>
                 Orders
               </NavLink>
+              <NavLink to="/nutrition" className="nav-link" onClick={toggleMenu}>
+                Nutrition
+              </NavLink>
               <NavLink to="/profile" className="nav-link" onClick={toggleMenu}>
                 Profile
               </NavLink>

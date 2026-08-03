@@ -9,7 +9,7 @@ import Wrapper from "../assets/wrappers/SingleMeal";
 import { IoMdStar, IoMdStarOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../Features/Cart/cartSlice";
-import { Loading } from "../components";
+import { Loading, NutritionFacts } from "../components";
 import { toast } from "react-toastify";
 import { GiHotMeal } from "react-icons/gi";
 import { FaShoppingCart, FaBell, FaLeaf, FaFire, FaCheckCircle } from "react-icons/fa";
@@ -28,7 +28,7 @@ const SingleMeal = () => {
   const {
     _id, image, name, mealType, country, dietary,
     ingredients = [], preparationSteps = [],
-    price, reviews = [], numOfReviews, averageRating,
+    price, reviews = [], numOfReviews, averageRating, nutrition,
   } = meal.meal;
 
   const dietaryTags = Array.isArray(dietary)
@@ -164,6 +164,13 @@ const SingleMeal = () => {
             </div>
           )}
         </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════
+          NUTRITION
+      ═══════════════════════════════════════════════ */}
+      <div style={{ marginBottom: "2.5rem" }}>
+        <NutritionFacts nutrition={nutrition} />
       </div>
 
       {/* ═══════════════════════════════════════════════
