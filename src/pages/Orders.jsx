@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import customFetch from "../utils/customFetch";
+import { NutritionRecommendations } from "../components";
 import { formatDistanceToNow } from "date-fns";
 import Wrapper from "../assets/wrappers/OrdersWrapper";
 import { formatPrice } from "../utils/formatPrice";
@@ -30,9 +32,40 @@ const Orders = () => {
   const ordersArray = Array.isArray(orders) ? orders : [];
   const currentUser = useSelector((state) => state.user?.user);
 
+  const [recs, setRecs] = useState({ items: [], summary: "", isLoading: false });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [navigation.location]);
+
+  // Suggestions derived from this order history. Cached server-side, so
+  // revisiting the page does not trigger a new model call.
+  useEffect(() => {
+    if (!currentUser || ordersArray.length === 0) return;
+
+    let cancelled = false;
+    setRecs((r) => ({ ...r, isLoading: true }));
+
+    customFetch
+      .get("/nutrition/recommendations?limit=3")
+      .then(({ data }) => {
+        if (cancelled) return;
+        setRecs({
+          items: data.recommendations || [],
+          summary: data.summary || "",
+          isLoading: false,
+        });
+      })
+      .catch(() => {
+        // Order history is the point of this page — if suggestions are
+        // unavailable, stay quiet rather than showing an error box here.
+        if (!cancelled) setRecs({ items: [], summary: "", isLoading: false });
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [currentUser, ordersArray.length]);
 
   if (!currentUser) {
     return (
@@ -183,6 +216,15 @@ const Orders = () => {
           );
         })}
       </div>
+
+      <NutritionRecommendations
+        recommendations={recs.items}
+        summary={recs.summary}
+        isLoading={recs.isLoading}
+        title="Based on what you've ordered"
+        subtitle="Meals whose nutrition balances out the pattern in your order history."
+        showSummary={false}
+      />
     </Wrapper>
   );
 };

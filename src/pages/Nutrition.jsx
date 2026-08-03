@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import customFetch from "../utils/customFetch";
 import Wrapper from "../assets/wrappers/Nutrition";
-import { Loading } from "../components";
+import { Loading, NutritionRecommendations } from "../components";
 import { GiHealthNormal } from "react-icons/gi";
 
 const NUTRIENTS = [
@@ -163,53 +163,20 @@ const Nutrition = () => {
             )}
           </div>
 
-          <div className="panel">
-            <h2>Recommended for you</h2>
-            {data.recommendations?.length ? (
-              <div className="recs">
-                {data.recommendations.map(({ meal, reason, addresses }) => (
-                  <article className="rec-card" key={meal._id}>
-                    {meal.image && (
-                      <img className="rec-img" src={meal.image} alt={meal.name} />
-                    )}
-                    <div className="rec-body">
-                      <h3 className="rec-name">{meal.name}</h3>
-                      <div className="rec-meta">
-                        {meal.mealType} · {meal.country}
-                      </div>
-                      <p className="rec-reason">{reason}</p>
-                      {addresses?.length > 0 && (
-                        <div className="rec-addresses">
-                          {addresses.map((a) => (
-                            <span key={a}>{a}</span>
-                          ))}
-                        </div>
-                      )}
-                      <div className="rec-macros">
-                        <span>
-                          <b>{fmt(meal.nutrition?.calories)}</b> kcal
-                        </span>
-                        <span>
-                          <b>{fmt(meal.nutrition?.protein)}</b>g protein
-                        </span>
-                        <span>
-                          <b>{fmt(meal.nutrition?.fiber)}</b>g fibre
-                        </span>
-                      </div>
-                      <Link className="rec-link" to={`/meals/${meal._id}`}>
-                        View meal →
-                      </Link>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            ) : (
+          {data.recommendations?.length ? (
+            <NutritionRecommendations
+              recommendations={data.recommendations}
+              showNote={false}
+            />
+          ) : (
+            <div className="panel">
+              <h2>Recommended for you</h2>
               <p className="summary">
                 No recommendations available yet — we need more meals with
                 nutrition information to compare against.
               </p>
-            )}
-          </div>
+            </div>
+          )}
         </>
       )}
 
