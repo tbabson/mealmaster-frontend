@@ -1,4 +1,5 @@
 import customFetch from "../utils/customFetch";
+import { getPushSubscription } from "../utils/push";
 
 // Validate form data
 export const validateForm = (formData) => {
@@ -45,55 +46,19 @@ export const createReminder = async (reminderData) => {
     }
 };
 
-// Helper function to convert VAPID public key
-export const urlBase64ToUint8Array = (base64String) => {
-    const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-    const base64 = (base64String + padding)
-        .replace(/-/g, "+")
-        .replace(/_/g, "/");
+// Re-exported for backwards compatibility — the implementation now lives in
+// utils/push.js so subscription logic exists in exactly one place.
+export { urlBase64ToUint8Array } from "../utils/push";
 
-    const rawData = window.atob(base64);
-    const outputArray = new Uint8Array(rawData.length);
-    for (let i = 0; i < rawData.length; ++i) {
-        outputArray[i] = rawData.charCodeAt(i);
-    }
-    return outputArray;
-};
-
-// Request notification permission and subscribe to push notifications
+// Request notification permission and register this device with the backend.
+// Returns true on success; the thrown reason is logged for diagnostics.
 export const requestNotificationPermission = async () => {
-    if ("Notification" in window) {
-        const permission = await Notification.requestPermission();
-        if (permission === "granted") {
-            try {
-                // Subscribe to push notifications
-                const registration = await navigator.serviceWorker.ready;
-                const subscription = await registration.pushManager.subscribe({
-                    userVisibleOnly: true,
-                    applicationServerKey: urlBase64ToUint8Array(
-                        process.env.REACT_APP_VAPID_PUBLIC_KEY
-                    ),
-                });
-
-                // Send subscription to backend
-                await customFetch.post(
-                    "/api/reminders/subscribe",
-                    { subscription },
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${localStorage.getItem("token")}`,
-                        },
-                    }
-                );
-
-                return true;
-            } catch (error) {
-                console.error("Notification subscription error:", error);
-                return false;
-            }
-        }
+    try {
+        const subscription = await getPushSubscription();
+        await customFetch.post("/reminders/subscribe", subscription);
+        return true;
+    } catch (error) {
+        console.error("Notification subscription error:", error);
         return false;
     }
-    return false;
 };

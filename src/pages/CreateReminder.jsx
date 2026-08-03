@@ -9,6 +9,7 @@ import {
   subscribeToPushNotifications,
 } from "../Features/Reminder/reminderSlice";
 import customFetch from "../utils/customFetch";
+import { getPushSubscription } from "../utils/push";
 import Wrapper from "../assets/wrappers/Reminder";
 import {
   FaArrowLeft,
@@ -123,7 +124,7 @@ const CreateReminder = () => {
 
   const handleRevokeCalendar = async () => {
     try {
-      await customFetch.post("/api/auth/google/revoke");
+      await customFetch.post("/auth/google/revoke");
       setIsCalendarAuthorized(false);
       toast.success("Google Calendar disconnected");
     } catch {
@@ -132,39 +133,13 @@ const CreateReminder = () => {
   };
 
   const handleEnablePush = async () => {
-    if (!("serviceWorker" in navigator && "PushManager" in window)) {
-      toast.error("Push notifications not supported in this browser");
-      return;
-    }
     try {
-      const registration = await navigator.serviceWorker.ready;
-      const sub = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey:
-          "BLYtSGQhEAXCSh4f4oivVIMDdhnx-bJI3tClaC8CK9BccN9Hxsy6WbRjdoyFyCzwUJXyZX6wCJJb18GLtDTZhWg",
-      });
-      const subData = {
-        endpoint: sub.endpoint,
-        keys: {
-          p256dh: btoa(
-            String.fromCharCode.apply(
-              null,
-              new Uint8Array(sub.getKey("p256dh"))
-            )
-          ),
-          auth: btoa(
-            String.fromCharCode.apply(
-              null,
-              new Uint8Array(sub.getKey("auth"))
-            )
-          ),
-        },
-      };
+      const subData = await getPushSubscription();
       await dispatch(subscribeToPushNotifications(subData)).unwrap();
       setEnabledPush(true);
       toast.success("Push notifications enabled");
-    } catch {
-      toast.error("Failed to enable push notifications");
+    } catch (error) {
+      toast.error(error?.message || "Failed to enable push notifications");
     }
   };
 

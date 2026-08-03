@@ -22,12 +22,33 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </React.StrictMode>
 );
 
-// Register the service worker for push notifications
+// Register the service worker: offline support plus push notification delivery.
+// Vite serves the worker from a different path (as a module) during dev than
+// the classic worker emitted by the production build.
+const SW_URL = import.meta.env.DEV ? "/dev-sw.js?dev-sw" : "/service-worker.js";
+const SW_OPTIONS = import.meta.env.DEV ? { type: "module" } : undefined;
+
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("/service-worker.js")
-    .then((registration) => {})
-    .catch((error) => {
-      console.error("Service Worker registration failed:", error);
-    });
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register(SW_URL, SW_OPTIONS)
+      .then((registration) => {
+        // Activate a newly installed worker as soon as it is ready
+        registration.addEventListener("updatefound", () => {
+          const installing = registration.installing;
+          if (!installing) return;
+          installing.addEventListener("statechange", () => {
+            if (
+              installing.state === "installed" &&
+              navigator.serviceWorker.controller
+            ) {
+              installing.postMessage({ type: "SKIP_WAITING" });
+            }
+          });
+        });
+      })
+      .catch((error) => {
+        console.error("Service Worker registration failed:", error);
+      });
+  });
 }
