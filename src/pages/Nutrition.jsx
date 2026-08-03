@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import customFetch from "../utils/customFetch";
 import Wrapper from "../assets/wrappers/Nutrition";
 import { Loading, NutritionRecommendations } from "../components";
 import { GiHealthNormal } from "react-icons/gi";
+import { FiPieChart, FiTrendingUp, FiCompass } from "react-icons/fi";
 
 const NUTRIENTS = [
   { key: "calories", label: "Calories", unit: "kcal" },
@@ -20,16 +21,15 @@ const fmt = (n) =>
   typeof n === "number" ? (Number.isInteger(n) ? n : n.toFixed(1)) : "—";
 
 const Nutrition = () => {
-  const user = useSelector((state) => state.user);
-  const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.user?.user);
 
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!user?.user) {
-      navigate("/login", { state: { from: "/nutrition" } });
+    if (!currentUser) {
+      setIsLoading(false);
       return;
     }
 
@@ -54,7 +54,79 @@ const Nutrition = () => {
     return () => {
       cancelled = true;
     };
-  }, [user, navigate]);
+  }, [currentUser]);
+
+  if (!currentUser) {
+    return (
+      <Wrapper>
+        <div className="guest-screen">
+          <div className="guest-card">
+            <div className="guest-avatar">
+              <GiHealthNormal />
+            </div>
+            <h1 className="guest-title">Know What You&apos;re Eating</h1>
+            <p className="guest-sub">
+              Sign in to see the nutrition behind every meal you order, spot
+              patterns in your diet, and get suggestions that balance it out.
+            </p>
+
+            <div className="guest-features">
+              <div className="feature-item">
+                <span className="feature-icon facts-icon">
+                  <FiPieChart />
+                </span>
+                <div>
+                  <p className="feature-label">Nutrition Per Meal</p>
+                  <p className="feature-desc">
+                    Calories, protein, carbs, fat, fibre and sodium for every dish
+                  </p>
+                </div>
+              </div>
+              <div className="feature-item">
+                <span className="feature-icon profile-icon">
+                  <FiTrendingUp />
+                </span>
+                <div>
+                  <p className="feature-label">Your Eating Pattern</p>
+                  <p className="feature-desc">
+                    Your average meal measured against general reference values
+                  </p>
+                </div>
+              </div>
+              <div className="feature-item">
+                <span className="feature-icon suggest-icon">
+                  <FiCompass />
+                </span>
+                <div>
+                  <p className="feature-label">Balanced Suggestions</p>
+                  <p className="feature-desc">
+                    Meals picked to fill the gaps your order history reveals
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="guest-actions">
+              <Link to="/login" className="btn-login">
+                Sign In
+              </Link>
+              <Link to="/register" className="btn-register">
+                Create Account
+              </Link>
+            </div>
+
+            <p className="guest-footer-text">
+              New here?{" "}
+              <Link to="/register" className="inline-link">
+                Create a free account
+              </Link>{" "}
+              and start tracking today.
+            </p>
+          </div>
+        </div>
+      </Wrapper>
+    );
+  }
 
   if (isLoading) return <Loading />;
 
