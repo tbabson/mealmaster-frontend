@@ -59,4 +59,15 @@ export default defineConfig({
       },
     },
   },
+  // `vite preview` does not inherit server.proxy, and preview is where the real
+  // service worker runs — without this the built app cannot reach the local API.
+  preview: {
+    port: 4173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      },
+    },
+  },
 });
