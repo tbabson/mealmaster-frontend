@@ -6,7 +6,9 @@
 // while the app is closed. Workbox replaces self.__WB_MANIFEST at build time
 // with the hashed asset list — nothing else here depends on Workbox.
 
-const VERSION = 'v1';
+// Bumping this deletes every older cache on activate. v2 purges v1's runtime
+// cache, which had stored unhashed files (and dev source modules) cache-first.
+const VERSION = 'v2';
 const PRECACHE = `mealmaster-precache-${VERSION}`;
 const RUNTIME = `mealmaster-runtime-${VERSION}`;
 const APP_SHELL = '/index.html';
@@ -60,6 +62,12 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
 
+  // Under `npm run dev` the worker exists only so push can be tested. Vite
+  // serves unhashed source modules (/src/*.jsx, /node_modules/.vite/deps/*) that
+  // change on every edit — caching them serves stale code that mixes old and new
+  // dependency builds. Let every dev request go straight to Vite.
+  if (import.meta.env.DEV) return;
+
   const url = new URL(request.url);
 
   // Cross-origin (the API on Render, Cloudinary images) goes straight to the
@@ -92,11 +100,33 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets are content-hashed, so cache-first is safe and fast.
+  // Vite's build output under /assets/ is content-hashed: a changed file gets
+  // a new URL, so cache-first is safe and fast.
+  if (url.pathname.startsWith('/assets/')) {
+    event.respondWith(
+      (async () => {
+        const cached = await caches.match(request);
+        if (cached) return cached;
+        try {
+          const response = await fetch(request);
+          if (response.ok && response.type === 'basic') {
+            const cache = await caches.open(RUNTIME);
+            cache.put(request, response.clone());
+          }
+          return response;
+        } catch {
+          return Response.error();
+        }
+      })()
+    );
+    return;
+  }
+
+  // Everything else (icons, manifest, images in /public) keeps its URL when its
+  // content changes, so cache-first would pin the first copy forever. Network
+  // first, and fall back to the cache only when offline.
   event.respondWith(
     (async () => {
-      const cached = await caches.match(request);
-      if (cached) return cached;
       try {
         const response = await fetch(request);
         if (response.ok && response.type === 'basic') {
@@ -105,7 +135,7 @@ self.addEventListener('fetch', (event) => {
         }
         return response;
       } catch {
-        return Response.error();
+        return (await caches.match(request)) || Response.error();
       }
     })()
   );
