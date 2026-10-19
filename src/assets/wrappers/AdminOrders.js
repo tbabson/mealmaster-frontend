@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   padding: 1.75rem 2rem 3rem;
-  background: #f8fafc;
+  background: var(--background);
   min-height: 100vh;
 
   /* ── Page header ── */
@@ -79,7 +79,7 @@ const Wrapper = styled.div`
     border-radius: 0.55rem;
     font-size: 0.9rem;
     color: var(--darkest);
-    background: #fafafa;
+    background: var(--background);
     transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
 
@@ -120,7 +120,7 @@ const Wrapper = styled.div`
       border-radius: 0.55rem;
       font-size: 0.875rem;
       color: var(--darkest);
-      background: #fafafa;
+      background: var(--background);
       cursor: pointer;
       outline: none;
       transition: border-color 0.2s;
@@ -168,8 +168,8 @@ const Wrapper = styled.div`
     min-width: 900px;
 
     thead tr {
-      background: #f8fafc;
-      border-bottom: 2px solid #e2e8f0;
+      background: var(--background);
+      border-bottom: 2px solid var(--border);
     }
 
     th {
@@ -184,11 +184,11 @@ const Wrapper = styled.div`
     }
 
     tbody tr {
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid var(--surface-soft);
       transition: background 0.15s;
 
       &:last-child { border-bottom: none; }
-      &:hover { background: #fafafa; }
+      &:hover { background: var(--background); }
     }
 
     td {
@@ -304,7 +304,7 @@ const Wrapper = styled.div`
     &:hover {
       background: var(--secondary);
       border-color: var(--secondary);
-      color: #fff;
+      color: var(--on-secondary);
     }
   }
 
@@ -351,7 +351,7 @@ const Wrapper = styled.div`
     justify-content: center;
     gap: 0.5rem;
     padding: 1.25rem 1rem;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--surface-soft);
   }
 
   .page-btn {
@@ -371,7 +371,7 @@ const Wrapper = styled.div`
     &:hover:not(:disabled) {
       background: var(--secondary);
       border-color: var(--secondary);
-      color: #fff;
+      color: var(--on-secondary);
     }
 
     &:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -399,7 +399,7 @@ const Wrapper = styled.div`
     &.active {
       background: var(--secondary);
       border-color: var(--secondary);
-      color: #fff;
+      color: var(--on-secondary);
     }
   }
 
@@ -453,7 +453,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: flex-start;
     padding: 1.5rem 1.75rem 1rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
   }
 
   .modal-title {
@@ -501,7 +501,7 @@ const Wrapper = styled.div`
     flex-shrink: 0;
     transition: background 0.2s, color 0.2s;
 
-    &:hover { background: var(--secondary); color: #fff; border-color: var(--secondary); }
+    &:hover { background: var(--secondary); color: var(--on-secondary); border-color: var(--secondary); }
   }
 
   /* Modal badges row */
@@ -510,8 +510,8 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
     gap: 0.6rem;
     padding: 0.85rem 1.75rem;
-    background: #f8fafc;
-    border-bottom: 1px solid #f1f5f9;
+    background: var(--background);
+    border-bottom: 1px solid var(--surface-soft);
   }
 
   .pay-pill {
@@ -540,14 +540,14 @@ const Wrapper = styled.div`
 
   .modal-left {
     padding: 1.5rem 1.75rem;
-    border-right: 1px solid #f1f5f9;
+    border-right: 1px solid var(--surface-soft);
 
-    @media (max-width: 639px) { border-right: none; border-bottom: 1px solid #f1f5f9; }
+    @media (max-width: 639px) { border-right: none; border-bottom: 1px solid var(--surface-soft); }
   }
 
   .modal-right {
     padding: 1.5rem 1.5rem;
-    background: #fafafa;
+    background: var(--background);
     border-radius: 0 0 1rem 0;
   }
 
@@ -585,7 +585,7 @@ const Wrapper = styled.div`
     gap: 0.85rem;
     align-items: start;
     padding-bottom: 0.85rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
 
     &:last-child { border-bottom: none; padding-bottom: 0; }
   }
@@ -672,7 +672,7 @@ const Wrapper = styled.div`
     color: var(--dark);
     padding: 0.3rem 0;
 
-    &:not(:last-child) { border-bottom: 1px solid #f1f5f9; }
+    &:not(:last-child) { border-bottom: 1px solid var(--surface-soft); }
   }
 
   .total-row {
@@ -712,7 +712,7 @@ const Wrapper = styled.div`
       border-radius: 0.5rem;
       font-size: 0.875rem;
       color: var(--darkest);
-      background: #fafafa;
+      background: var(--background);
       outline: none;
       cursor: pointer;
       transition: border-color 0.2s;

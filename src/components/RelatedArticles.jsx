@@ -77,7 +77,7 @@ const RelatedArticles = ({ articles }) => {
         {articles.map((article) => (
           <Link
             key={article._id}
-            to={`/blog/${article._id}`}
+            to={`/blogs/${article.slug || article._id}`}
             className="article-card"
           >
             {article.featuredImage && (

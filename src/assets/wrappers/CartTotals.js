@@ -5,7 +5,7 @@ const Wrapper = styled.div`
     background: #fff;
     border-radius: 0.75rem;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--card-shadow);
     width: 100%;
   }
 
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
     padding: 0.5rem 0;
     font-size: 0.95rem;
     color: var(--dark);
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
 
     span:first-child {
       font-weight: 500;

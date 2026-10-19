@@ -330,7 +330,7 @@ const AdminReviews = () => {
                                 <FaStar
                                   key={n}
                                   style={{
-                                    color: n <= review.rating ? accent : "#e2e8f0",
+                                    color: n <= review.rating ? accent : "var(--border)",
                                     fontSize: "0.95rem",
                                   }}
                                 />

@@ -9,6 +9,7 @@ import {
   changePage,
 } from "../Features/Blog/blogSlice";
 import Loading from "../components/Loading";
+import PageHeader from "../components/PageHeader";
 import {
   FaSearch,
   FaTimes,
@@ -95,13 +96,11 @@ const Blog = () => {
   return (
     <Wrapper>
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <div className="blog-hero">
-        <div className="hero-inner">
-          <span className="hero-eyebrow">Meal Master Blog</span>
-          <h1 className="hero-title">Recipes, Tips &amp; Food Stories</h1>
-          <p className="hero-sub">
-            From kitchen hacks to deep-dives on nutrition — stories worth reading.
-          </p>
+      <PageHeader
+        eyebrow="The MealMaster journal"
+        title="Recipes, tips & food stories."
+        subtitle="From kitchen hacks to deep dives on nutrition: stories worth reading."
+      >
           <div className="search-bar">
             <FaSearch className="search-icon" />
             <input
@@ -116,8 +115,7 @@ const Blog = () => {
               </button>
             )}
           </div>
-        </div>
-      </div>
+      </PageHeader>
 
       {/* ── Filter bar ────────────────────────────────────────────────── */}
       <div className="filter-bar">
@@ -159,7 +157,7 @@ const Blog = () => {
               const isFeatured = idx === 0;
               return (
                 <article key={blog._id} className={`blog-card${isFeatured ? " featured" : ""}`}>
-                  <Link to={`/blogs/${blog._id}`} className="card-img-wrap">
+                  <Link to={`/blogs/${blog.slug || blog._id}`} className="card-img-wrap">
                     {blog.featuredImage ? (
                       <img src={blog.featuredImage} alt={blog.title} />
                     ) : (
@@ -169,7 +167,7 @@ const Blog = () => {
                   </Link>
                   <div className="card-body">
                     <h2 className="card-title">
-                      <Link to={`/blogs/${blog._id}`}>{blog.title}</Link>
+                      <Link to={`/blogs/${blog.slug || blog._id}`}>{blog.title}</Link>
                     </h2>
                     <p className="card-excerpt">{excerpt}{excerpt.length >= 155 ? "…" : ""}</p>
                     <div className="card-footer">
@@ -183,7 +181,7 @@ const Blog = () => {
                           {formatDate(blog.createdAt)}
                         </span>
                       </div>
-                      <Link to={`/blogs/${blog._id}`} className="read-more">
+                      <Link to={`/blogs/${blog.slug || blog._id}`} className="read-more">
                         Read <FaArrowRight className="arrow-icon" />
                       </Link>
                     </div>

@@ -11,8 +11,8 @@ const Wrapper = styled.div`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #64748b;
-    background: #f1f5f9;
+    color: var(--text-secondary);
+    background: var(--surface-soft);
     padding: 0.3rem 0.75rem;
     border-radius: 20px;
   }
@@ -32,13 +32,13 @@ const Wrapper = styled.div`
     text-align: center;
     padding: 4rem 2rem;
     background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
   }
 
   .empty-icon {
     font-size: 3.5rem;
-    color: #cbd5e1;
+    color: var(--border-strong);
     margin-bottom: 1rem;
   }
 
@@ -51,7 +51,7 @@ const Wrapper = styled.div`
 
   .empty-state p {
     font-size: 0.875rem;
-    color: #64748b;
+    color: var(--text-secondary);
     margin: 0 0 1.5rem;
   }
 
@@ -67,7 +67,7 @@ const Wrapper = styled.div`
     transition: background 0.2s, transform 0.15s;
 
     &:hover {
-      background: var(--darkest);
+      background: var(--primary-hover);
       transform: translateY(-1px);
     }
   }

@@ -77,7 +77,7 @@ export const getUser = createAsyncThunk(
 // Thunk to update user
 export const updateUser = createAsyncThunk(
     "user/updateUser",
-    async ({ userData, image }, { rejectWithValue }) => {
+    async ({ userData, image }, { getState, rejectWithValue }) => {
         try {
             let formData;
             if (image) {
@@ -89,8 +89,9 @@ export const updateUser = createAsyncThunk(
                 formData.append('profileImage', image);
             }
 
+            // Only fullName, email and profileImage are accepted; always updates the caller
             const { data } = await customFetch.patch(
-                "/users/update-user",
+                `/users/${getState().user.user?._id}`,
                 formData || userData,
                 formData ? {
                     headers: { 'Content-Type': 'multipart/form-data' }
@@ -121,7 +122,7 @@ export const changePassword = createAsyncThunk(
     "user/changePassword",
     async ({ oldPassword, newPassword }, { rejectWithValue }) => {
         try {
-            const { data } = await customFetch.patch("/users/update-password", {
+            const { data } = await customFetch.patch("/users/changeUserPassword", {
                 oldPassword,
                 newPassword,
             });

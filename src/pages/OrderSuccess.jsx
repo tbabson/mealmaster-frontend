@@ -108,7 +108,10 @@ const OrderSuccess = () => {
                   <FiPackage className="detail-icon" />
                   <div>
                     <span className="detail-label">Status</span>
-                    <span className="status-badge">Processing</span>
+                    {/* Stripe confirms by webhook, which can land a moment after the redirect */}
+                    <span className="status-badge">
+                      {orderInfo.isPaid ? "Paid" : "Confirming payment"}
+                    </span>
                   </div>
                 </div>
               </div>

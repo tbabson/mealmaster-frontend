@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addComment, deleteComment } from "../Features/Blog/blogSlice";
 import { formatDate } from "../utils/formatDate";
 import { FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 import Wrapper from "../assets/wrappers/BlogComment";
 
 const BlogComments = ({ blogId }) => {
@@ -23,7 +24,7 @@ const BlogComments = ({ blogId }) => {
       ).unwrap();
       setComment("");
     } catch (error) {
-      console.error("Failed to add comment:", error);
+      toast.error(typeof error === "string" ? error : "Failed to add comment");
     } finally {
       setIsSubmitting(false);
     }
@@ -36,9 +37,16 @@ const BlogComments = ({ blogId }) => {
     try {
       await dispatch(deleteComment({ blogId, commentId })).unwrap();
     } catch (error) {
-      console.error("Failed to delete comment:", error);
+      toast.error(typeof error === "string" ? error : "Failed to delete comment");
     }
   };
+
+  // Mirrors the API: the comment's author, the post's author, or an admin
+  const canDelete = (comment) =>
+    !!user &&
+    (user.role === "admin" ||
+      user._id === comment.user?._id ||
+      user._id === (blog?.author?._id || blog?.author));
 
   return (
     <Wrapper>
@@ -47,13 +55,13 @@ const BlogComments = ({ blogId }) => {
         {blog?.comments?.map((comment) => (
           <div key={comment._id} className="comment">
             <div className="comment-header">
-              <span className="comment-author">{comment.user.fullName}</span>
+              <span className="comment-author">{comment.user?.fullName || "Former member"}</span>
               <span className="comment-date">
                 {formatDate(comment.createdAt)}
               </span>
             </div>
             <p>{comment.content}</p>
-            {user?._id === comment.user._id && (
+            {canDelete(comment) && (
               <button
                 className="btn-danger btn-sm"
                 onClick={() => handleDelete(comment._id)}
@@ -70,6 +78,7 @@ const BlogComments = ({ blogId }) => {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 placeholder="Write a comment..."
+                maxLength={2000}
                 rows="3"
               />
             </div>

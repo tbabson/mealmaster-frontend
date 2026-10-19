@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--background);
 
   /* ── Shared avatar ─────────────────────────────────────────────── */
   .avatar-img,
@@ -48,12 +48,12 @@ const Wrapper = styled.section`
     margin: 4rem auto;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--card-shadow);
     padding: 2.5rem;
     text-align: center;
 
     h3 { color: #ef4444; margin: 0 0 0.5rem; }
-    p  { color: #64748b; margin: 0 0 1.5rem; }
+    p  { color: var(--text-secondary); margin: 0 0 1.5rem; }
   }
 
   /* ══════════════════════════════════════════════════════════════
@@ -91,7 +91,7 @@ const Wrapper = styled.section`
 
   .page-sub {
     font-size: 0.875rem;
-    color: #64748b;
+    color: var(--text-secondary);
     margin: 0;
   }
 
@@ -100,7 +100,7 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: center;
     background: #fff;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 12px;
     padding: 0.5rem 1.1rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
@@ -117,7 +117,7 @@ const Wrapper = styled.section`
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #64748b;
+      color: var(--text-secondary);
     }
   }
 
@@ -144,7 +144,7 @@ const Wrapper = styled.section`
       left: 0.8rem;
       top: 50%;
       transform: translateY(-50%);
-      color: #94a3b8;
+      color: var(--text-muted);
       font-size: 0.8rem;
       pointer-events: none;
     }
@@ -153,31 +153,31 @@ const Wrapper = styled.section`
   .search-input {
     width: 100%;
     padding: 0.55rem 0.85rem 0.55rem 2.2rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     font-size: 0.875rem;
     color: var(--darkest);
-    background: #f8fafc;
+    background: var(--background);
     font-family: inherit;
     box-sizing: border-box;
     transition: border-color 0.2s, box-shadow 0.2s;
 
-    &::placeholder { color: #94a3b8; }
+    &::placeholder { color: var(--text-muted); }
     &:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(40, 132, 43, 0.12);
+      box-shadow: 0 0 0 3px rgba(53, 132, 56, 0.12);
       background: #fff;
     }
   }
 
   .filter-select {
     padding: 0.55rem 2rem 0.55rem 0.8rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     font-size: 0.875rem;
     color: var(--darkest);
-    background: #f8fafc url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 0.6rem center / 1em;
+    background: var(--background) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 0.6rem center / 1em;
     appearance: none;
     cursor: pointer;
     font-family: inherit;
@@ -211,7 +211,7 @@ const Wrapper = styled.section`
   .users-table {
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--card-shadow);
     overflow: hidden;
     margin-bottom: 1.5rem;
   }
@@ -220,13 +220,13 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 1fr 130px 130px 100px;
     padding: 0.8rem 1.25rem;
-    background: #f1f5f9;
+    background: var(--surface-soft);
     font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #64748b;
-    border-bottom: 1px solid #e2e8f0;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
 
     @media (max-width: 680px) {
       display: none;
@@ -238,12 +238,12 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 130px 130px 100px;
     align-items: center;
     padding: 0.9rem 1.25rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
     transition: background 0.15s;
     gap: 0.5rem;
 
     &:last-child { border-bottom: none; }
-    &:hover { background: #f8fafc; }
+    &:hover { background: var(--background); }
 
     @media (max-width: 680px) {
       grid-template-columns: 1fr auto;
@@ -274,7 +274,7 @@ const Wrapper = styled.section`
 
     .ur-email {
       font-size: 0.78rem;
-      color: #64748b;
+      color: var(--text-secondary);
       margin: 0;
       white-space: nowrap;
       overflow: hidden;
@@ -284,7 +284,7 @@ const Wrapper = styled.section`
 
   .ur-date {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--text-secondary);
   }
 
   .ur-actions {
@@ -322,7 +322,7 @@ const Wrapper = styled.section`
   .empty-state {
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--card-shadow);
     padding: 4rem 2rem;
     text-align: center;
     display: flex;
@@ -330,9 +330,9 @@ const Wrapper = styled.section`
     align-items: center;
     gap: 0.5rem;
 
-    .empty-icon { font-size: 2.5rem; color: #cbd5e1; margin-bottom: 0.25rem; }
+    .empty-icon { font-size: 2.5rem; color: var(--border-strong); margin-bottom: 0.25rem; }
     h4 { font-size: 1.05rem; font-weight: 700; color: var(--darkest); margin: 0; }
-    p  { font-size: 0.875rem; color: #64748b; margin: 0; }
+    p  { font-size: 0.875rem; color: var(--text-secondary); margin: 0; }
   }
 
   /* ── Pagination ────────────────────────────────────────────────── */
@@ -352,12 +352,12 @@ const Wrapper = styled.section`
     min-width: 36px;
     height: 36px;
     padding: 0 0.65rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     background: #fff;
     font-size: 0.82rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.18s;
 
@@ -380,7 +380,7 @@ const Wrapper = styled.section`
     display: inline-flex;
     align-items: center;
     height: 36px;
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 0.9rem;
     padding: 0 0.15rem;
   }
@@ -446,7 +446,7 @@ const Wrapper = styled.section`
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    background: linear-gradient(135deg, #143315 0%, #0f2210 100%);
+    background: linear-gradient(135deg, var(--text-primary) 0%, #0f2210 100%);
     border-radius: 16px;
     padding: 1.75rem 2rem;
 
@@ -509,7 +509,7 @@ const Wrapper = styled.section`
     flex: 1;
     min-width: 120px;
     background: #fff;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 12px;
     padding: 0.85rem 1rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
@@ -529,7 +529,7 @@ const Wrapper = styled.section`
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #64748b;
+      color: var(--text-secondary);
     }
   }
 
@@ -537,7 +537,7 @@ const Wrapper = styled.section`
   .data-section {
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--card-shadow);
     overflow: hidden;
   }
 
@@ -550,8 +550,8 @@ const Wrapper = styled.section`
     color: var(--darkest);
     margin: 0;
     padding: 1rem 1.25rem;
-    border-bottom: 1px solid #f1f5f9;
-    background: #f8fafc;
+    border-bottom: 1px solid var(--surface-soft);
+    background: var(--background);
 
     .si { color: var(--secondary); font-size: 0.85rem; }
   }
@@ -567,11 +567,11 @@ const Wrapper = styled.section`
     justify-content: space-between;
     gap: 1rem;
     padding: 0.85rem 1.25rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
     transition: background 0.15s;
 
     &:last-child { border-bottom: none; }
-    &:hover { background: #f8fafc; }
+    &:hover { background: var(--background); }
 
     .dr-left {
       min-width: 0;
@@ -588,7 +588,7 @@ const Wrapper = styled.section`
 
       .dr-sub {
         font-size: 0.775rem;
-        color: #64748b;
+        color: var(--text-secondary);
         margin: 0;
         display: flex;
         align-items: center;

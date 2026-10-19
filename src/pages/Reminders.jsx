@@ -10,7 +10,7 @@ import {
   deleteReminder,
   updateReminder,
 } from "../Features/Reminder/reminderSlice";
-import { Loading } from "../components";
+import { Loading, PageHeader, PillLink } from "../components";
 import Wrapper, { ModalOverlay, ModalContent } from "../assets/wrappers/UserReminder";
 import "react-calendar/dist/Calendar.css";
 import {
@@ -23,9 +23,7 @@ import {
   FaRedo,
   FaTimes,
   FaSave,
-  FaUtensils,
 } from "react-icons/fa";
-import { MdOutlineNotificationsActive } from "react-icons/md";
 
 const METHOD_META = {
   email:    { icon: <FaEnvelope />,    color: "#3b82f6", bg: "#eff6ff",  label: "Email" },
@@ -120,20 +118,13 @@ const Reminders = () => {
   return (
     <Wrapper>
       {/* ── Page header ─────────────────────────── */}
-      <div className="page-header">
-        <div className="header-left">
-          <h1 className="page-title">
-            <MdOutlineNotificationsActive className="title-icon" />
-            My Reminders
-          </h1>
-          <p className="page-sub">
-            {allReminders.length} reminder{allReminders.length !== 1 ? "s" : ""} total
-          </p>
-        </div>
-        <Link to="/meals" className="browse-btn">
-          <FaUtensils /> Browse Meals
-        </Link>
-      </div>
+      <PageHeader
+        eyebrow="Your rhythm"
+        title="Meals on your schedule."
+        subtitle={`${allReminders.length} reminder${allReminders.length !== 1 ? "s" : ""} set. Pick a meal to schedule the next one.`}
+      >
+        <PillLink to="/meals" tone="orange">Browse meals</PillLink>
+      </PageHeader>
 
       {/* ── Stats strip ─────────────────────────── */}
       <div className="stats-strip">

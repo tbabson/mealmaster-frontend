@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { CartItemList, CartTotals } from "../components";
+import { CartItemList, CartTotals, PageHeader } from "../components";
 import { Link } from "react-router-dom";
 import Wrapper from "../assets/wrappers/Cart";
 import { IoBagOutline } from "react-icons/io5";
@@ -100,12 +100,11 @@ const Cart = () => {
 
   return (
     <Wrapper>
-      <div className="cart-header">
-        <h2>Shopping Cart</h2>
-        <span className="item-count">
-          {numItemsInCart} {numItemsInCart === 1 ? "meal" : "meals"}
-        </span>
-      </div>
+      <PageHeader
+        eyebrow="Your cart"
+        title="Almost at the table."
+        subtitle={`${numItemsInCart} ${numItemsInCart === 1 ? "meal" : "meals"} ready to order. Review your ingredients, then check out.`}
+      />
       <div className="cartContainer">
         <div className="cartItemList">
           <CartItemList />

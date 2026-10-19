@@ -43,48 +43,17 @@ export const fetchUserReminders = createAsyncThunk(
     'reminders/fetchUserReminders',
     async (_, { rejectWithValue }) => {
         try {
+            // Admin endpoint: every reminder, with `user` already populated
+            // ({ _id, fullName, email }) — no per-reminder user lookups needed.
             const response = await customFetch.get('/reminders');
 
-            // Fetch user details for each reminder
-            const remindersWithUsers = await Promise.all(
-                response.data.reminders.map(async (reminder) => {
-                    try {
-                        if (!reminder.user) {
-                            console.warn('No user ID found for reminder:', reminder._id);
-                            return {
-                                ...reminder,
-                                userDetails: {
-                                    email: 'No email',
-                                    fullName: 'Unknown User'
-                                }
-                            };
-                        }
-
-                        // Use the getUser endpoint to fetch user details
-                        const userResponse = await customFetch.get(`/users/${reminder.user}`);
-                        if (!userResponse.data || !userResponse.data.user) {
-                            throw new Error('Invalid user data received');
-                        }
-
-                        return {
-                            ...reminder,
-                            userDetails: {
-                                email: userResponse.data.user.email,
-                                fullName: userResponse.data.user.name || userResponse.data.user.fullName
-                            }
-                        };
-                    } catch (error) {
-                        console.error(`Error fetching user details for reminder ${reminder._id}:`, error);
-                        return {
-                            ...reminder,
-                            userDetails: {
-                                email: 'No email',
-                                fullName: 'Unknown User'
-                            }
-                        };
-                    }
-                })
-            );
+            const remindersWithUsers = response.data.reminders.map((reminder) => ({
+                ...reminder,
+                userDetails: {
+                    email: reminder.user?.email || 'No email',
+                    fullName: reminder.user?.fullName || 'Unknown User',
+                },
+            }));
 
             return { reminders: remindersWithUsers };
         } catch (error) {
@@ -171,7 +140,8 @@ export const revokeCalendarAccess = createAsyncThunk(
     'reminders/revokeCalendarAccess',
     async (_, { rejectWithValue }) => {
         try {
-            await customFetch.post('/api/auth/google/revoke');
+            // baseURL already ends in /api/v1 — the old '/api/auth/...' path was a 404
+            await customFetch.post('/auth/google/revoke');
             return true;
         } catch (error) {
             return rejectWithValue(error.response?.data?.message || error.message);

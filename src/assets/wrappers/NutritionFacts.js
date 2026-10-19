@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.section`
-  border: 1px solid #e8edf3;
+  border: 1px solid var(--border);
   border-radius: 16px;
   background: #fff;
   padding: 1.5rem;
@@ -22,11 +22,11 @@ const Wrapper = styled.section`
     margin: 0;
     font-size: 1.15rem;
     font-weight: 800;
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   .nf-title svg {
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
   }
 
   .nf-serving {
@@ -34,7 +34,7 @@ const Wrapper = styled.section`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #7b8794;
+    color: var(--text-secondary);
   }
 
   .nf-calories {
@@ -43,7 +43,7 @@ const Wrapper = styled.section`
     gap: 0.5rem;
     padding: 0.9rem 1.1rem;
     border-radius: 12px;
-    background: var(--lightest, #f4faf4);
+    background: var(--lightest, var(--surface-soft));
     border: 1px solid #e2ede2;
     margin-bottom: 1.1rem;
   }
@@ -51,20 +51,20 @@ const Wrapper = styled.section`
   .nf-calories .val {
     font-size: 1.9rem;
     font-weight: 800;
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
     line-height: 1;
   }
 
   .nf-calories .unit {
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
   }
 
   .nf-calories .lbl {
     margin-left: auto;
     font-size: 0.8rem;
-    color: #7b8794;
+    color: var(--text-secondary);
   }
 
   .nf-grid {
@@ -86,14 +86,14 @@ const Wrapper = styled.section`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #7b8794;
+    color: var(--text-secondary);
     margin-bottom: 0.25rem;
   }
 
   .nf-cell .v {
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   .nf-highlights {
@@ -109,7 +109,7 @@ const Wrapper = styled.section`
     padding: 0.32rem 0.7rem;
     border-radius: 99px;
     background: #eaf5ea;
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
     border: 1px solid #d3e9d4;
   }
 
@@ -117,18 +117,18 @@ const Wrapper = styled.section`
     margin: 1rem 0 0;
     font-size: 0.8rem;
     line-height: 1.6;
-    color: #7b8794;
+    color: var(--text-secondary);
   }
 
   .nf-note.caveat {
     padding-left: 0.75rem;
-    border-left: 3px solid var(--secondary, #ff5722);
+    border-left: 3px solid var(--secondary, var(--secondary));
   }
 
   .nf-empty {
     margin: 0;
     font-size: 0.9rem;
-    color: #7b8794;
+    color: var(--text-secondary);
     line-height: 1.6;
   }
 

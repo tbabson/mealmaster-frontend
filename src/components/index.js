@@ -1,14 +1,11 @@
-export { default as CurrentUser } from './CurrentUser'
 export { default as FormRow } from './FormRow'
 export { default as FormRowSelect } from './FormRowSelect'
 export { default as Logo } from './Logo'
 export { default as SubmitBtn } from './SubmitBtn'
 export { default as Navbar } from './Navbar'
-export { default as Hero } from './Hero'
 export { default as SectionTitle } from './SectionTitle'
 export { default as RecommendedMeals } from './RecommendedMeals'
 export { default as RecommendedMealsContainer } from './RecommendedMealsContainer'
-export { default as LandingSection } from './LandingSection'
 export { default as Footer } from './Footer'
 export { default as SearchContainer } from './SearchContainer'
 export { default as MealContainer } from './MealContainer'
@@ -19,7 +16,6 @@ export { default as Loading } from './Loading'
 export { default as CartTotals } from './CartTotals'
 export { default as CartItem } from './CartItem'
 export { default as CartItemList } from './CartItemList'
-export { default as CheckoutForm } from './CheckoutForm'
 export { default as FormInput } from './FormInput'
 export { default as SocialShare } from './SocialShare';
 export { default as RelatedArticles } from './RelatedArticles';
@@ -30,3 +26,8 @@ export { default as BreadcrumbSchema } from './BreadcrumbSchema';
 export { default as ProtectedAdminRoute } from './ProtectedAdminRoute';
 export { default as NutritionFacts } from './NutritionFacts';
 export { default as NutritionRecommendations } from './NutritionRecommendations';
+export { default as Reveal } from './Reveal';
+export { default as Eyebrow } from './Eyebrow';
+export { default as Marquee } from './Marquee';
+export { default as PillLink } from './PillLink';
+export { default as PageHeader } from './PageHeader';

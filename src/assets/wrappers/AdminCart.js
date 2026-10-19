@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   padding: 1.5rem 2rem 3rem;
-  background: #f8fafc;
+  background: var(--background);
   min-height: 100vh;
 
   /* ── Page Header ── */
@@ -62,11 +62,11 @@ const Wrapper = styled.div`
   .search-input {
     width: 100%;
     padding: 0.55rem 0.85rem 0.55rem 2.25rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 0.55rem;
     font-size: 0.875rem;
     color: var(--darkest);
-    background: #f8fafc;
+    background: var(--background);
     outline: none;
     transition: border-color 0.2s;
 
@@ -76,17 +76,17 @@ const Wrapper = styled.div`
     }
 
     &::placeholder {
-      color: #94a3b8;
+      color: var(--text-muted);
     }
   }
 
   .filter-select {
     padding: 0.55rem 0.85rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 0.55rem;
     font-size: 0.875rem;
     color: var(--darkest);
-    background: #f8fafc;
+    background: var(--background);
     outline: none;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -98,7 +98,7 @@ const Wrapper = styled.div`
 
   .search-btn {
     padding: 0.55rem 1.1rem;
-    background: var(--secondary);
+    background: var(--primary);
     color: #fff;
     border: none;
     border-radius: 0.55rem;
@@ -114,9 +114,9 @@ const Wrapper = styled.div`
 
   .clear-btn {
     padding: 0.55rem 1.1rem;
-    background: #f1f5f9;
+    background: var(--surface-soft);
     color: var(--dark);
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 0.55rem;
     font-size: 0.875rem;
     font-weight: 600;
@@ -124,8 +124,8 @@ const Wrapper = styled.div`
     transition: background 0.2s, border-color 0.2s;
 
     &:hover {
-      background: #e2e8f0;
-      border-color: #cbd5e1;
+      background: var(--border);
+      border-color: var(--border-strong);
     }
   }
 
@@ -150,8 +150,8 @@ const Wrapper = styled.div`
     font-size: 0.875rem;
 
     thead tr {
-      background: #f8fafc;
-      border-bottom: 1.5px solid #e2e8f0;
+      background: var(--background);
+      border-bottom: 1.5px solid var(--border);
     }
 
     th {
@@ -168,7 +168,7 @@ const Wrapper = styled.div`
     td {
       padding: 0.85rem 1rem;
       color: var(--darkest);
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid var(--surface-soft);
       vertical-align: middle;
     }
 
@@ -177,7 +177,7 @@ const Wrapper = styled.div`
     }
 
     tbody tr:hover td {
-      background: #fafafa;
+      background: var(--background);
     }
   }
 
@@ -193,7 +193,7 @@ const Wrapper = styled.div`
     font-size: 0.82rem;
     font-weight: 700;
     color: var(--darkest);
-    background: #f1f5f9;
+    background: var(--surface-soft);
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     letter-spacing: 0.04em;
@@ -265,7 +265,7 @@ const Wrapper = styled.div`
 
     &:hover {
       background: var(--secondary);
-      color: #fff;
+      color: var(--on-secondary);
     }
   }
 
@@ -294,7 +294,7 @@ const Wrapper = styled.div`
   .spinner {
     width: 2.25rem;
     height: 2.25rem;
-    border: 4px solid #e2e8f0;
+    border: 4px solid var(--border);
     border-top-color: var(--secondary);
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
@@ -308,7 +308,7 @@ const Wrapper = styled.div`
 
   .empty-icon {
     font-size: 2.5rem;
-    color: #cbd5e1;
+    color: var(--border-strong);
   }
 
   /* ── Pagination ── */
@@ -323,7 +323,7 @@ const Wrapper = styled.div`
   .page-nav {
     width: 34px;
     height: 34px;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 0.5rem;
     background: #fff;
     color: var(--darkest);
@@ -336,7 +336,7 @@ const Wrapper = styled.div`
 
     &:hover:not(:disabled) {
       background: var(--secondary);
-      color: #fff;
+      color: var(--on-secondary);
       border-color: var(--secondary);
     }
 
@@ -350,7 +350,7 @@ const Wrapper = styled.div`
     min-width: 34px;
     height: 34px;
     padding: 0 0.5rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 0.5rem;
     background: #fff;
     color: var(--darkest);
@@ -367,7 +367,7 @@ const Wrapper = styled.div`
     &.active {
       background: var(--secondary);
       border-color: var(--secondary);
-      color: #fff;
+      color: var(--on-secondary);
     }
   }
 
@@ -429,7 +429,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: flex-start;
     padding: 1.25rem 1.5rem;
-    border-bottom: 1.5px solid #f1f5f9;
+    border-bottom: 1.5px solid var(--surface-soft);
     flex-shrink: 0;
   }
 
@@ -451,7 +451,7 @@ const Wrapper = styled.div`
     height: 32px;
     border: none;
     border-radius: 6px;
-    background: #f1f5f9;
+    background: var(--surface-soft);
     color: var(--dark);
     font-size: 0.9rem;
     display: flex;
@@ -463,7 +463,7 @@ const Wrapper = styled.div`
     transition: background 0.18s, color 0.18s;
 
     &:hover {
-      background: #e2e8f0;
+      background: var(--border);
       color: var(--darkest);
     }
   }
@@ -533,10 +533,10 @@ const Wrapper = styled.div`
   }
 
   .meal-block {
-    background: #f8fafc;
+    background: var(--background);
     border-radius: 0.65rem;
     overflow: hidden;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
   }
 
   .meal-block-header {
@@ -544,8 +544,8 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0.7rem 1rem;
-    background: #f1f5f9;
-    border-bottom: 1px solid #e2e8f0;
+    background: var(--surface-soft);
+    border-bottom: 1px solid var(--border);
   }
 
   .meal-block-name {
@@ -566,7 +566,7 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
     padding: 0.45rem 1rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
     font-size: 0.82rem;
 
     &:last-child {
@@ -581,7 +581,7 @@ const Wrapper = styled.div`
   .ing-qty {
     color: var(--dark);
     font-size: 0.78rem;
-    background: #e2e8f0;
+    background: var(--border);
     padding: 0.1rem 0.4rem;
     border-radius: 4px;
     font-weight: 600;
@@ -598,10 +598,10 @@ const Wrapper = styled.div`
 
   /* ── Modal Summary ── */
   .modal-summary {
-    background: #f8fafc;
+    background: var(--background);
     border-radius: 0.65rem;
     padding: 0.85rem 1rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     gap: 0.45rem;
@@ -622,7 +622,7 @@ const Wrapper = styled.div`
     &.grand {
       margin-top: 0.35rem;
       padding-top: 0.6rem;
-      border-top: 1.5px dashed #e2e8f0;
+      border-top: 1.5px dashed var(--border);
       font-size: 1rem;
       color: var(--darkest);
       font-weight: 700;
@@ -640,13 +640,13 @@ const Wrapper = styled.div`
     justify-content: flex-end;
     gap: 0.75rem;
     padding: 1rem 1.5rem;
-    border-top: 1.5px solid #f1f5f9;
+    border-top: 1.5px solid var(--surface-soft);
     flex-shrink: 0;
   }
 
   .btn-close-modal {
     padding: 0.55rem 1.25rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 0.55rem;
     background: #fff;
     color: var(--darkest);
@@ -656,7 +656,7 @@ const Wrapper = styled.div`
     transition: background 0.18s;
 
     &:hover {
-      background: #f1f5f9;
+      background: var(--surface-soft);
     }
   }
 
@@ -725,7 +725,7 @@ const Wrapper = styled.div`
 
   .btn-cancel {
     padding: 0.6rem 1.5rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 0.55rem;
     background: #fff;
     color: var(--darkest);
@@ -735,7 +735,7 @@ const Wrapper = styled.div`
     transition: background 0.18s;
 
     &:hover:not(:disabled) {
-      background: #f1f5f9;
+      background: var(--surface-soft);
     }
 
     &:disabled {

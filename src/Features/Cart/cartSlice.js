@@ -35,20 +35,47 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async (userId, { rej
     }
 });
 
-// Sync cart with backend (debounced to prevent frequent calls)
-const debouncedSyncCart = debounce(async ({ userId, cartItems, dispatch }) => {
-    if (!userId) return;
+// Only what the server reads: it re-prices everything from the catalogue and
+// ignores client-sent names, images, units and prices.
+const toSyncPayload = (cartItems) =>
+    (cartItems || []).map((meal) => ({
+        mealID: meal.mealID,
+        ingredients: (meal.ingredients || []).map(({ name, quantity }) => ({ name, quantity })),
+    }));
+
+// Sync cart with backend (debounced to prevent frequent calls).
+// The server always syncs the signed-in user's own cart — no userId is sent.
+const debouncedSyncCart = debounce(async ({ cartItems, dispatch }) => {
     try {
-        await customFetch.post("/cart/sync", { userId, cartItems });
+        const { data } = await customFetch.post("/cart/sync", { cartItems: toSyncPayload(cartItems) });
+        dispatch(applyServerCart({ sent: cartItems, serverItems: data.cartItems }));
         dispatch(setLastSyncedCart(cartItems));
     } catch (error) {
         toast.error(error.response?.data?.message || "No cart to sync");
     }
 }, 1000);
 
-export const syncCart = createAsyncThunk("cart/syncCart", async ({ userId, cartItems }, { dispatch }) => {
-    debouncedSyncCart({ userId, cartItems, dispatch });
+export const syncCart = createAsyncThunk("cart/syncCart", async ({ cartItems }, { dispatch }) => {
+    debouncedSyncCart({ cartItems, dispatch });
 });
+
+// Sync immediately and adopt the server's prices — used before checkout so the
+// total the customer sees is exactly what the server will charge.
+export const refreshCartPrices = createAsyncThunk(
+    "cart/refreshCartPrices",
+    async (_, { getState, rejectWithValue }) => {
+        debouncedSyncCart.cancel(); // superseded by this immediate sync
+        const { cartItems } = getState().cart;
+        try {
+            const { data } = await customFetch.post("/cart/sync", { cartItems: toSyncPayload(cartItems) });
+            return data.cartItems;
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message || "Could not confirm cart prices");
+        }
+    }
+);
+
+const ingredientKey = (mealID, name) => `${mealID}::${String(name).trim().toLowerCase()}`;
 
 // Admin: Fetch all carts
 export const fetchAllCarts = createAsyncThunk(
@@ -57,7 +84,7 @@ export const fetchAllCarts = createAsyncThunk(
         try {
             const params = new URLSearchParams({
                 search: search || "",
-                status: searchStatus || "all",
+                searchStatus: searchStatus || "all",
                 sort: sort || "latest",
                 page: page || 1
             });
@@ -178,6 +205,40 @@ const cartSlice = createSlice({
         setLastSyncedCart: (state, action) => {
             state.lastSyncedCart = action.payload;
         },
+        // Adopt server prices/units after a debounced sync. Items edited or added
+        // since the request was sent are left alone (the next sync covers them);
+        // items the server rejected (no longer in the catalogue) are dropped.
+        applyServerCart: (state, action) => {
+            const { sent = [], serverItems = [] } = action.payload;
+            const server = new Map();
+            serverItems.forEach((meal) =>
+                (meal.ingredients || []).forEach((ing) =>
+                    server.set(ingredientKey(meal.mealID, ing.name), ing)
+                )
+            );
+            const sentKeys = new Set();
+            sent.forEach((meal) =>
+                (meal.ingredients || []).forEach((ing) => sentKeys.add(ingredientKey(meal.mealID, ing.name)))
+            );
+
+            state.cartItems = state.cartItems
+                .map((meal) => ({
+                    ...meal,
+                    ingredients: meal.ingredients.filter((ing) => {
+                        const key = ingredientKey(meal.mealID, ing.name);
+                        const fromServer = server.get(key);
+                        if (fromServer) {
+                            ing.price = fromServer.price;
+                            ing.unit = fromServer.unit;
+                            return true;
+                        }
+                        // Sent but not returned → rejected by the server
+                        return !sentKeys.has(key);
+                    }),
+                }))
+                .filter((meal) => meal.ingredients.length > 0);
+            cartSlice.caseReducers.calculateTotals(state);
+        },
         // Admin reducers
         updateFilters: (state, action) => {
             const { name, value } = action.payload;
@@ -203,6 +264,11 @@ const cartSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
                 toast.error(action.payload || "Failed to load cart");
+            })
+            .addCase(refreshCartPrices.fulfilled, (state, action) => {
+                state.cartItems = Array.isArray(action.payload) ? action.payload : [];
+                state.lastSyncedCart = state.cartItems;
+                cartSlice.caseReducers.calculateTotals(state);
             })
             .addCase(logoutUser.fulfilled, (state) => {
                 return initialState; // Reset the cart state when user logs out
@@ -253,6 +319,7 @@ export const {
     updateIngredientQuantity,
     calculateTotals,
     setLastSyncedCart,
+    applyServerCart,
     updateFilters,
 } = cartSlice.actions;
 export default cartSlice.reducer;

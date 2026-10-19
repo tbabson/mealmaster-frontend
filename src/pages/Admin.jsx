@@ -1,4 +1,7 @@
-import { Outlet, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { MotionConfig, motion } from "framer-motion";
+import { Logo } from "../components";
+import PublicStyles from "../assets/wrappers/PublicStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../Features/user/userSlice";
 import {
@@ -67,7 +70,9 @@ const Admin = () => {
     .toUpperCase();
 
   return (
-    <Wrapper className={collapsed ? "sidebar-collapsed" : ""}>
+    <MotionConfig reducedMotion="user">
+    <PublicStyles />
+    <Wrapper className={`public-site admin-shell ${collapsed ? "sidebar-collapsed" : ""}`}>
       {/* Mobile overlay backdrop */}
       {mobileOpen && (
         <div className="backdrop" onClick={() => setMobileOpen(false)} />
@@ -88,7 +93,11 @@ const Admin = () => {
 
           {/* Sidebar header */}
           <div className="sidebar-header">
-            {!collapsed && <span className="brand-name">MealMaster</span>}
+            {!collapsed && (
+              <Link to="/" className="brand-logo" aria-label="MealMaster home">
+                <Logo />
+              </Link>
+            )}
             <button
               className="collapse-btn desktop-only"
               onClick={() => setCollapsed((p) => !p)}
@@ -100,7 +109,9 @@ const Admin = () => {
 
           {/* User info */}
           <div className="user-info">
-            <div className="avatar">{initials}</div>
+            <div className="avatar">
+              {user?.profileImage ? <img src={user.profileImage} alt="" /> : initials}
+            </div>
             {!collapsed && (
               <div className="user-text">
                 <p className="user-name">{user?.fullName || user?.name || "Admin"}</p>
@@ -120,8 +131,19 @@ const Admin = () => {
                 className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
                 title={collapsed ? label : undefined}
               >
-                <span className="nav-icon">{icon}</span>
-                {!collapsed && <span className="nav-label">{label}</span>}
+                {({ isActive }) => (
+                  <>
+                    {isActive && (
+                      <motion.span
+                        layoutId="admin-nav-active"
+                        className="nav-active"
+                        transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      />
+                    )}
+                    <span className="nav-icon">{icon}</span>
+                    {!collapsed && <span className="nav-label">{label}</span>}
+                  </>
+                )}
               </NavLink>
             ))}
           </nav>
@@ -142,10 +164,18 @@ const Admin = () => {
 
         {/* Main content */}
         <main className="main-content">
-          <Outlet />
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Outlet />
+          </motion.div>
         </main>
       </div>
     </Wrapper>
+    </MotionConfig>
   );
 };
 

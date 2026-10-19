@@ -16,11 +16,11 @@ const Wrapper = styled.div`
     margin: 0 0 0.5rem;
     font-size: 1.9rem;
     font-weight: 800;
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   .page-head h1 svg {
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
   }
 
   .page-head p {
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   }
 
   .panel {
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 16px;
     background: #fff;
     padding: 1.5rem;
@@ -42,13 +42,13 @@ const Wrapper = styled.div`
     margin: 0 0 1rem;
     font-size: 1.15rem;
     font-weight: 800;
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   .summary {
     font-size: 1rem;
     line-height: 1.75;
-    color: #334155;
+    color: var(--text-primary);
     margin: 0 0 1.25rem;
   }
 
@@ -58,7 +58,7 @@ const Wrapper = styled.div`
     gap: 1.75rem;
     padding-bottom: 1.25rem;
     margin-bottom: 1.25rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
   }
 
   .stat .k {
@@ -67,13 +67,13 @@ const Wrapper = styled.div`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #7b8794;
+    color: var(--text-secondary);
   }
 
   .stat .v {
     font-size: 1.35rem;
     font-weight: 800;
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   /* nutrient bars: average vs reference */
@@ -92,7 +92,7 @@ const Wrapper = styled.div`
   .bar-label {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #334155;
+    color: var(--text-primary);
     text-transform: capitalize;
   }
 
@@ -107,7 +107,7 @@ const Wrapper = styled.div`
   .bar-fill {
     height: 100%;
     border-radius: 99px;
-    background: var(--primary, #28842b);
+    background: var(--primary, var(--primary));
     transition: width 0.4s ease;
   }
 
@@ -116,12 +116,12 @@ const Wrapper = styled.div`
   }
 
   .bar-fill.high {
-    background: var(--secondary, #ff5722);
+    background: var(--secondary, var(--secondary));
   }
 
   .bar-value {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--text-secondary);
     text-align: right;
     white-space: nowrap;
   }
@@ -164,7 +164,7 @@ const Wrapper = styled.div`
   .rec-card {
     display: flex;
     flex-direction: column;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
     background: #fff;
@@ -181,7 +181,7 @@ const Wrapper = styled.div`
     height: 150px;
     object-fit: cover;
     display: block;
-    background: var(--lightest, #f4faf4);
+    background: var(--lightest, var(--surface-soft));
   }
 
   .rec-body {
@@ -195,19 +195,19 @@ const Wrapper = styled.div`
     margin: 0 0 0.35rem;
     font-size: 1.02rem;
     font-weight: 800;
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   .rec-meta {
     font-size: 0.78rem;
-    color: #7b8794;
+    color: var(--text-secondary);
     margin-bottom: 0.6rem;
   }
 
   .rec-reason {
     font-size: 0.88rem;
     line-height: 1.65;
-    color: #475569;
+    color: var(--text-secondary);
     margin: 0 0 0.85rem;
   }
 
@@ -224,7 +224,7 @@ const Wrapper = styled.div`
     padding: 0.22rem 0.55rem;
     border-radius: 99px;
     background: #eaf5ea;
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
     text-transform: capitalize;
   }
 
@@ -232,14 +232,14 @@ const Wrapper = styled.div`
     display: flex;
     gap: 0.9rem;
     font-size: 0.76rem;
-    color: #64748b;
+    color: var(--text-secondary);
     padding-top: 0.75rem;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--surface-soft);
     margin-top: auto;
   }
 
   .rec-macros b {
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   .rec-link {
@@ -247,7 +247,7 @@ const Wrapper = styled.div`
     display: inline-block;
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
     text-decoration: none;
   }
 
@@ -264,20 +264,20 @@ const Wrapper = styled.div`
   .state h2 {
     margin: 0 0 0.6rem;
     font-size: 1.15rem;
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   .state p {
     margin: 0 auto 1.25rem;
     max-width: 52ch;
-    color: #64748b;
+    color: var(--text-secondary);
     line-height: 1.7;
   }
 
   .state a,
   .state button {
     display: inline-block;
-    background: var(--primary, #28842b);
+    background: var(--primary, var(--primary));
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -291,7 +291,7 @@ const Wrapper = styled.div`
   .notice {
     padding: 1rem 1.25rem;
     border-radius: 10px;
-    border-left: 4px solid var(--secondary, #ff5722);
+    border-left: 4px solid var(--secondary, var(--secondary));
     background: #fff8f5;
     color: #7c2d12;
     font-size: 0.9rem;
@@ -301,7 +301,7 @@ const Wrapper = styled.div`
 
   .disclaimer {
     font-size: 0.8rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     line-height: 1.7;
     text-align: center;
     margin-top: 2rem;
@@ -318,9 +318,9 @@ const Wrapper = styled.div`
 
   .guest-card {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 20px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--card-shadow);
     padding: 3rem 2.5rem;
     max-width: 500px;
     width: 100%;
@@ -335,27 +335,27 @@ const Wrapper = styled.div`
     width: 84px;
     height: 84px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #5cb860 0%, #28842b 100%);
+    background: linear-gradient(135deg, #5cb860 0%, var(--primary) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
     font-size: 2rem;
-    box-shadow: 0 4px 18px rgba(40, 132, 43, 0.28);
+    box-shadow: 0 4px 18px rgba(53, 132, 56, 0.28);
     flex-shrink: 0;
   }
 
   .guest-title {
     font-size: 1.65rem;
     font-weight: 800;
-    color: #1e293b;
+    color: var(--text-primary);
     margin: 0;
     line-height: 1.2;
   }
 
   .guest-sub {
     font-size: 0.95rem;
-    color: #64748b;
+    color: var(--text-secondary);
     line-height: 1.65;
     margin: 0;
     max-width: 380px;
@@ -375,13 +375,13 @@ const Wrapper = styled.div`
     gap: 1rem;
     padding: 0.85rem 1rem;
     border-radius: 12px;
-    border: 1px solid #f1f5f9;
+    border: 1px solid var(--surface-soft);
     background: #fafbfc;
     transition: border-color 0.15s, background 0.15s;
   }
 
   .feature-item:hover {
-    border-color: rgba(40, 132, 43, 0.2);
+    border-color: rgba(53, 132, 56, 0.2);
     background: #f6fbf6;
   }
 
@@ -403,13 +403,13 @@ const Wrapper = styled.div`
   .feature-label {
     font-size: 0.875rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-primary);
     margin: 0 0 0.15rem;
   }
 
   .feature-desc {
     font-size: 0.8rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     margin: 0;
     line-height: 1.4;
   }
@@ -425,14 +425,14 @@ const Wrapper = styled.div`
     flex: 1;
     padding: 0.85rem 1.5rem;
     border-radius: 10px;
-    background: var(--primary, #28842b);
+    background: var(--primary, var(--primary));
     color: #fff;
     font-size: 0.95rem;
     font-weight: 700;
     text-decoration: none;
     text-align: center;
     transition: opacity 0.15s, transform 0.15s;
-    box-shadow: 0 3px 12px rgba(40, 132, 43, 0.3);
+    box-shadow: 0 3px 12px rgba(53, 132, 56, 0.3);
     min-width: 120px;
 
     &:hover {
@@ -446,12 +446,12 @@ const Wrapper = styled.div`
     padding: 0.85rem 1.5rem;
     border-radius: 10px;
     background: transparent;
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
     font-size: 0.95rem;
     font-weight: 700;
     text-decoration: none;
     text-align: center;
-    border: 2px solid var(--primary, #28842b);
+    border: 2px solid var(--primary, var(--primary));
     transition: background 0.15s, color 0.15s, transform 0.15s;
     min-width: 120px;
 
@@ -463,12 +463,12 @@ const Wrapper = styled.div`
 
   .guest-footer-text {
     font-size: 0.82rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     margin: 0;
   }
 
   .inline-link {
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
     font-weight: 600;
     text-decoration: none;
 

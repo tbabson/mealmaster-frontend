@@ -1,26 +1,23 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
+  height: 100%;
+
   .meal-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     text-decoration: none;
-    background: #fff;
-    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: border-color 0.3s, box-shadow 0.3s;
 
     &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    &:hover .card-overlay {
-      opacity: 1;
-    }
-
-    &:hover .card-image img {
-      transform: scale(1.06);
+      border-color: var(--primary);
+      box-shadow: 0 24px 50px -28px rgba(15, 26, 19, 0.45);
     }
   }
 
@@ -30,88 +27,54 @@ const Wrapper = styled.div`
     width: 100%;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    background: #e2e8f0;
+    background: var(--border);
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.35s ease;
+      display: block;
     }
   }
 
-  .type-badge {
-    position: absolute;
-    top: 0.6rem;
-    left: 0.6rem;
-    background: var(--primary);
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.22rem 0.55rem;
-    border-radius: 20px;
-  }
-
+  .type-badge,
   .rating-badge {
     position: absolute;
-    top: 0.6rem;
-    right: 0.6rem;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(4px);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.22rem 0.5rem;
-    border-radius: 20px;
+    top: 0.85rem;
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.3rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: rgba(15, 26, 19, 0.7);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
+  .type-badge { left: 0.85rem; }
+  .rating-badge { right: 0.85rem; letter-spacing: 0.02em; }
 
   .star-icon {
-    color: #fbbf24;
+    color: var(--secondary);
     font-size: 0.7rem;
-  }
-
-  .card-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(20, 51, 21, 0.72);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-
-  .view-recipe {
-    color: #fff;
-    font-size: 0.875rem;
-    font-weight: 700;
-    border: 2px solid #fff;
-    padding: 0.5rem 1.2rem;
-    border-radius: 25px;
-    letter-spacing: 0.03em;
-    transition: background 0.2s;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
   }
 
   /* ── Card body ─────────────────────────────────── */
   .card-body {
-    padding: 0.9rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.7rem;
+    padding: 1.15rem 1.25rem 1.25rem;
   }
 
   .meal-name {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--darkest);
-    margin: 0 0 0.5rem;
-    line-height: 1.35;
+    font-size: 1.35rem;
+    color: var(--text-primary);
+    line-height: 1.15;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -123,33 +86,32 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
     flex-wrap: wrap;
-    margin-bottom: 0.55rem;
   }
 
   .meta-country {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    font-size: 0.78rem;
-    color: #64748b;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
     text-transform: capitalize;
   }
 
   .meta-icon {
-    color: #94a3b8;
-    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
   }
 
   .dietary-chip {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    background: #dcfce7;
-    color: #16a34a;
+    background: var(--surface-soft);
+    color: var(--primary);
     font-size: 0.7rem;
     font-weight: 600;
-    padding: 0.15rem 0.5rem;
-    border-radius: 20px;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-pill);
     text-transform: capitalize;
   }
 
@@ -157,10 +119,31 @@ const Wrapper = styled.div`
     font-size: 0.65rem;
   }
 
+  .card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+
   .card-price {
-    font-size: 0.92rem;
-    font-weight: 800;
-    color: var(--secondary);
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-left: auto;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--primary);
+    span { display: inline-flex; }
   }
 `;
 

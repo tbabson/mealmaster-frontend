@@ -4,7 +4,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--background);
 
   /* ═══════════════════════════════════════════════════════
      TOPBAR
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     padding: 0 2rem;
     height: 60px;
     background: #fff;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   }
 
@@ -28,19 +28,19 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.45rem;
     padding: 0.4rem 0.85rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
     border-radius: 8px;
     background: #fff;
-    color: #475569;
+    color: var(--text-secondary);
     font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
     transition: background 0.15s, border-color 0.15s, color 0.15s;
     &:hover {
-      background: #f1f5f9;
-      border-color: #cbd5e1;
-      color: #1e293b;
+      background: var(--surface-soft);
+      border-color: var(--border-strong);
+      color: var(--text-primary);
     }
   }
 
@@ -55,10 +55,10 @@ const Wrapper = styled.div`
 
   .bc-seg {
     font-size: 0.82rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     white-space: nowrap;
     &.current {
-      color: #1e293b;
+      color: var(--text-primary);
       font-weight: 600;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -68,7 +68,7 @@ const Wrapper = styled.div`
 
   .bc-sep {
     font-size: 0.6rem;
-    color: #cbd5e1;
+    color: var(--border-strong);
     flex-shrink: 0;
   }
 
@@ -85,18 +85,18 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .btn-discard {
     padding: 0.45rem 1rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
     border-radius: 8px;
     background: #fff;
-    color: #64748b;
+    color: var(--text-secondary);
     font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.15s;
     &:hover {
-      background: #f1f5f9;
-      color: #1e293b;
-      border-color: #cbd5e1;
+      background: var(--surface-soft);
+      color: var(--text-primary);
+      border-color: var(--border-strong);
     }
   }
 
@@ -107,7 +107,7 @@ const Wrapper = styled.div`
     padding: 0.45rem 1.2rem;
     border: none;
     border-radius: 8px;
-    background: var(--secondary, #ff5722);
+    background: var(--secondary, var(--secondary));
     color: #fff;
     font-size: 0.82rem;
     font-weight: 700;
@@ -155,7 +155,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .form-card {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     padding: 1.75rem;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
@@ -185,7 +185,7 @@ const Wrapper = styled.div`
   .col-label {
     font-size: 0.78rem;
     font-weight: 700;
-    color: #64748b;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     margin: 0;
@@ -198,13 +198,13 @@ const Wrapper = styled.div`
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
-    background: #f1f5f9;
-    border: 2px dashed #cbd5e1;
+    background: var(--surface-soft);
+    border: 2px dashed var(--border-strong);
     transition: border-color 0.2s;
   }
 
   .image-upload-zone:hover {
-    border-color: var(--secondary, #ff5722);
+    border-color: var(--secondary, var(--secondary));
   }
 
   .image-upload-zone:hover .img-overlay {
@@ -252,18 +252,18 @@ const Wrapper = styled.div`
 
   .placeholder-icon {
     font-size: 2.5rem;
-    color: #94a3b8;
+    color: var(--text-muted);
   }
 
   .placeholder-text {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #64748b;
+    color: var(--text-secondary);
   }
 
   .placeholder-hint {
     font-size: 0.72rem;
-    color: #94a3b8;
+    color: var(--text-muted);
   }
 
   .new-image-note {
@@ -298,13 +298,13 @@ const Wrapper = styled.div`
   .card-title {
     font-size: 1rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-primary);
     margin: 0;
   }
 
   .card-sub {
     font-size: 0.8rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     margin: 0.15rem 0 0;
   }
 
@@ -350,22 +350,22 @@ const Wrapper = styled.div`
   .field-label {
     font-size: 0.78rem;
     font-weight: 700;
-    color: #64748b;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
   .req {
-    color: var(--secondary, #ff5722);
+    color: var(--secondary, var(--secondary));
     margin-left: 2px;
   }
 
   .field-input {
     padding: 0.55rem 0.8rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     font-size: 0.875rem;
-    color: #1e293b;
+    color: var(--text-primary);
     background: #fff;
     outline: none;
     transition: border-color 0.15s, box-shadow 0.15s;
@@ -373,20 +373,20 @@ const Wrapper = styled.div`
   }
 
   .field-input:focus {
-    border-color: var(--secondary, #ff5722);
+    border-color: var(--secondary, var(--secondary));
     box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
   }
 
   .field-input::placeholder {
-    color: #cbd5e1;
+    color: var(--border-strong);
   }
 
   .field-textarea {
     padding: 0.55rem 0.8rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     font-size: 0.875rem;
-    color: #1e293b;
+    color: var(--text-primary);
     background: #fff;
     outline: none;
     width: 100%;
@@ -396,12 +396,12 @@ const Wrapper = styled.div`
   }
 
   .field-textarea:focus {
-    border-color: var(--secondary, #ff5722);
+    border-color: var(--secondary, var(--secondary));
     box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
   }
 
   .field-textarea::placeholder {
-    color: #cbd5e1;
+    color: var(--border-strong);
   }
 
   /* ═══════════════════════════════════════════════════════
@@ -412,10 +412,10 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
     padding: 0.55rem 0.9rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     background: #fff;
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
@@ -424,7 +424,7 @@ const Wrapper = styled.div`
   }
 
   .featured-btn svg {
-    color: #cbd5e1;
+    color: var(--border-strong);
     transition: color 0.18s;
   }
 
@@ -439,8 +439,8 @@ const Wrapper = styled.div`
   }
 
   .featured-btn:hover:not(.active) {
-    border-color: #cbd5e1;
-    background: #f8fafc;
+    border-color: var(--border-strong);
+    background: var(--background);
   }
 
   /* ═══════════════════════════════════════════════════════
@@ -457,10 +457,10 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.3rem;
     padding: 0.3rem 0.75rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 20px;
-    background: #f8fafc;
-    color: #64748b;
+    background: var(--background);
+    color: var(--text-secondary);
     font-size: 0.78rem;
     font-weight: 600;
     cursor: pointer;
@@ -469,13 +469,13 @@ const Wrapper = styled.div`
 
   .diet-chip.on {
     background: #fff0ec;
-    border-color: var(--secondary, #ff5722);
-    color: var(--secondary, #ff5722);
+    border-color: var(--secondary, var(--secondary));
+    color: var(--secondary, var(--secondary));
   }
 
   .diet-chip:hover:not(.on) {
-    background: #f1f5f9;
-    border-color: #94a3b8;
+    background: var(--surface-soft);
+    border-color: var(--text-muted);
   }
 
   .chip-check {
@@ -490,10 +490,10 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.4rem;
     padding: 0.45rem 1rem;
-    border: 1.5px dashed var(--secondary, #ff5722);
+    border: 1.5px dashed var(--secondary, var(--secondary));
     border-radius: 8px;
     background: #fff;
-    color: var(--secondary, #ff5722);
+    color: var(--secondary, var(--secondary));
     font-size: 0.8rem;
     font-weight: 700;
     cursor: pointer;
@@ -515,7 +515,7 @@ const Wrapper = styled.div`
   }
 
   .ing-card {
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 1rem 1.25rem;
     background: #fafbfc;
@@ -537,7 +537,7 @@ const Wrapper = styled.div`
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background: var(--secondary, #ff5722);
+    background: var(--secondary, var(--secondary));
     color: #fff;
     font-size: 0.75rem;
     font-weight: 700;
@@ -548,7 +548,7 @@ const Wrapper = styled.div`
     flex: 1;
     font-size: 0.88rem;
     font-weight: 600;
-    color: #1e293b;
+    color: var(--text-primary);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -655,8 +655,8 @@ const Wrapper = styled.div`
   }
 
   .step-card {
-    border: 1px solid #e2e8f0;
-    border-left: 4px solid var(--secondary, #ff5722);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--secondary, var(--secondary));
     border-radius: 10px;
     padding: 1rem 1.25rem;
     background: #fafbfc;
@@ -678,7 +678,7 @@ const Wrapper = styled.div`
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: var(--secondary, #ff5722);
+    background: var(--secondary, var(--secondary));
     color: #fff;
     font-size: 0.78rem;
     font-weight: 700;
@@ -689,7 +689,7 @@ const Wrapper = styled.div`
     flex: 1;
     font-size: 0.88rem;
     font-weight: 600;
-    color: #1e293b;
+    color: var(--text-primary);
   }
 
   .duration-group {
@@ -724,14 +724,14 @@ const Wrapper = styled.div`
   .spinner {
     width: 44px;
     height: 44px;
-    border: 3px solid #e2e8f0;
-    border-top-color: var(--secondary, #ff5722);
+    border: 3px solid var(--border);
+    border-top-color: var(--secondary, var(--secondary));
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
   }
 
   .state-text {
-    color: #64748b;
+    color: var(--text-secondary);
     font-size: 0.9rem;
     margin: 0;
   }
@@ -739,7 +739,7 @@ const Wrapper = styled.div`
   .state-title {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-primary);
     margin: 0;
   }
 
@@ -756,10 +756,10 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
     padding: 0.55rem 1.25rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     background: #fff;
-    color: #475569;
+    color: var(--text-secondary);
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
@@ -768,7 +768,7 @@ const Wrapper = styled.div`
   }
 
   .btn-back-error:hover {
-    background: #f1f5f9;
+    background: var(--surface-soft);
   }
 `;
 

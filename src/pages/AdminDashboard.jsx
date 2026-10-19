@@ -33,7 +33,7 @@ const DELIVERY_COLORS = {
   Failed:           "#ef4444",
 };
 
-const PIE_FALLBACK_COLORS = ["#28842b", "#ff5722", "#3b82f6", "#f59e0b", "#a855f7", "#ef4444"];
+const PIE_FALLBACK_COLORS = ["#358438", "#ff5722", "#3b82f6", "#f59e0b", "#a855f7", "#ef4444"];
 
 const StatCard = ({ icon, label, value, sub, color, link }) => (
   <Link to={link || "#"} className="stat-card" style={{ "--accent": color }}>
@@ -117,8 +117,8 @@ const AdminDashboard = () => {
             <AreaChart data={monthlyData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%"  stopColor="#28842b" stopOpacity={0.25} />
-                  <stop offset="95%" stopColor="#28842b" stopOpacity={0} />
+                  <stop offset="5%"  stopColor="#358438" stopOpacity={0.25} />
+                  <stop offset="95%" stopColor="#358438" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="ordGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%"  stopColor="#ff5722" stopOpacity={0.25} />
@@ -134,7 +134,7 @@ const AdminDashboard = () => {
                 labelStyle={{ fontWeight: 600 }}
               />
               <Legend />
-              <Area yAxisId="rev" type="monotone" dataKey="revenue" name="Revenue (₦)" stroke="#28842b" fill="url(#revGrad)" strokeWidth={2} />
+              <Area yAxisId="rev" type="monotone" dataKey="revenue" name="Revenue (₦)" stroke="#358438" fill="url(#revGrad)" strokeWidth={2} />
               <Area yAxisId="ord" type="monotone" dataKey="orders"  name="Orders"      stroke="#ff5722" fill="url(#ordGrad)" strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
@@ -178,7 +178,7 @@ const AdminDashboard = () => {
                 <XAxis type="number" tick={{ fontSize: 11 }} />
                 <YAxis type="category" dataKey="name" width={110} tick={{ fontSize: 11 }} />
                 <Tooltip />
-                <Bar dataKey="orders" name="Times Ordered" fill="#28842b" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="orders" name="Times Ordered" fill="#358438" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           )}

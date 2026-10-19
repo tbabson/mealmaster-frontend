@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   }
 
   .sk {
-    background: #e8edf3;
+    background: var(--border);
     border-radius: 6px;
     position: relative;
     overflow: hidden;
@@ -36,7 +36,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .sk-wrap {
     padding: 2rem 1.5rem;
-    background: #f8fafc;
+    background: var(--background);
     min-height: 100vh;
   }
 
@@ -63,7 +63,7 @@ const Wrapper = styled.div`
 
   .sk-card {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1.25rem;
     display: flex;
@@ -78,7 +78,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .sk-page {
     padding: 2.5rem 2rem;
-    background: #f8fafc;
+    background: var(--background);
     min-height: 100vh;
     max-width: 1100px;
     margin: 0 auto;
@@ -112,7 +112,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .sk-profile {
     padding: 2rem 1.5rem;
-    background: #f8fafc;
+    background: var(--background);
     min-height: 100vh;
   }
 
@@ -131,7 +131,7 @@ const Wrapper = styled.div`
 
   .sk-sidebar {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 2rem 1.5rem;
     box-shadow: 0 1px 6px rgba(0,0,0,0.05);
@@ -162,7 +162,7 @@ const Wrapper = styled.div`
 
   .sk-tabs {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 0.35rem;
     display: flex;
@@ -172,7 +172,7 @@ const Wrapper = styled.div`
 
   .sk-list-panel {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 1px 6px rgba(0,0,0,0.05);
@@ -183,7 +183,7 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 1rem;
     padding: 1rem 1.25rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
   }
 
   .sk-list-row:last-child {
@@ -195,7 +195,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .sk-reminders {
     padding: 2rem 1.5rem;
-    background: #f8fafc;
+    background: var(--background);
     min-height: 100vh;
     max-width: 860px;
     margin: 0 auto;
@@ -206,7 +206,7 @@ const Wrapper = styled.div`
 
   .sk-reminder-card {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1.25rem;
     display: flex;
@@ -220,7 +220,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .sk-single-meal {
     padding: 2rem 1.5rem 4rem;
-    background: #f8fafc;
+    background: var(--background);
     min-height: 100vh;
     max-width: 1100px;
     margin: 0 auto;
@@ -231,7 +231,7 @@ const Wrapper = styled.div`
 
   .sk-meal-hero {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     padding: 1.5rem;
     display: grid;
@@ -254,7 +254,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .sk-single-blog {
     padding: 2rem 1.5rem 4rem;
-    background: #f8fafc;
+    background: var(--background);
     min-height: 100vh;
     max-width: 780px;
     margin: 0 auto;
@@ -281,7 +281,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .sk-blog-wrap {
     padding: 2rem 1.5rem 4rem;
-    background: #f8fafc;
+    background: var(--background);
     min-height: 100vh;
     max-width: 1100px;
     margin: 0 auto;
@@ -306,7 +306,7 @@ const Wrapper = styled.div`
 
   .sk-blog-card {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 1px 4px rgba(0,0,0,0.04);
@@ -333,7 +333,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .sk-admin {
     padding: 1.5rem 2rem 3rem;
-    background: #f8fafc;
+    background: var(--background);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -342,7 +342,7 @@ const Wrapper = styled.div`
 
   .sk-filter-bar {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1rem 1.25rem;
     display: flex;
@@ -352,7 +352,7 @@ const Wrapper = styled.div`
 
   .sk-table-card {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 1px 6px rgba(0,0,0,0.05);
@@ -362,7 +362,7 @@ const Wrapper = styled.div`
     display: flex;
     gap: 1rem;
     padding: 0.9rem 1.25rem;
-    border-bottom: 2px solid #f1f5f9;
+    border-bottom: 2px solid var(--surface-soft);
     background: #fafbfc;
   }
 
@@ -371,7 +371,7 @@ const Wrapper = styled.div`
     gap: 1rem;
     align-items: center;
     padding: 0.9rem 1.25rem;
-    border-bottom: 1px solid #f8fafc;
+    border-bottom: 1px solid var(--background);
   }
 
   .sk-table-row:last-child {
@@ -383,7 +383,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .sk-dashboard {
     padding: 1.5rem 2rem 3rem;
-    background: #f8fafc;
+    background: var(--background);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -402,7 +402,7 @@ const Wrapper = styled.div`
 
   .sk-stat-card {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     padding: 1.5rem;
     display: flex;
@@ -413,7 +413,7 @@ const Wrapper = styled.div`
 
   .sk-chart {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     padding: 1.5rem;
     height: 260px;

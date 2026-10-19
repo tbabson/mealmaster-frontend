@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--background);
 
   /* ── Hero ─────────────────────────────────────── */
   .page-hero {
     position: relative;
-    background-color: #143315;
+    background-color: var(--text-primary);
     background-image: var(--hero-img);
     background-size: cover;
     background-position: center;
@@ -23,9 +23,9 @@ const Wrapper = styled.div`
     inset: 0;
     background: linear-gradient(
       135deg,
-      rgba(10, 25, 12, 0.92) 0%,
-      rgba(20, 51, 21, 0.78) 55%,
-      rgba(10, 25, 12, 0.6) 100%
+      rgba(36, 49, 41, 0.92) 0%,
+      rgba(36, 49, 41, 0.78) 55%,
+      rgba(36, 49, 41, 0.6) 100%
     );
   }
 
@@ -94,7 +94,7 @@ const Wrapper = styled.div`
     text-transform: capitalize;
 
     &.green {
-      background: rgba(40, 132, 43, 0.35);
+      background: rgba(53, 132, 56, 0.35);
       color: #a3e6a5;
     }
   }
@@ -114,14 +114,14 @@ const Wrapper = styled.div`
   .form-card {
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--card-shadow);
     overflow: hidden;
   }
 
   /* ── Section blocks ───────────────────────────── */
   .section-block {
     padding: 1.5rem 1.75rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
 
     &:last-of-type { border-bottom: none; }
   }
@@ -160,17 +160,17 @@ const Wrapper = styled.div`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #64748b;
+    color: var(--text-secondary);
   }
 
   .field-input {
     width: 100%;
     padding: 0.6rem 0.85rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 9px;
     font-size: 0.875rem;
     color: var(--darkest);
-    background: #f8fafc;
+    background: var(--background);
     box-sizing: border-box;
     transition: border-color 0.2s, box-shadow 0.2s;
     font-family: inherit;
@@ -178,7 +178,7 @@ const Wrapper = styled.div`
     &:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(40, 132, 43, 0.12);
+      box-shadow: 0 0 0 3px rgba(53, 132, 56, 0.12);
       background: #fff;
     }
   }
@@ -194,7 +194,7 @@ const Wrapper = styled.div`
     bottom: 0.45rem;
     right: 0.65rem;
     font-size: 0.7rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     pointer-events: none;
   }
 
@@ -203,7 +203,7 @@ const Wrapper = styled.div`
 
   .period-toggle {
     display: flex;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 9px;
     overflow: hidden;
   }
@@ -212,10 +212,10 @@ const Wrapper = styled.div`
     flex: 1;
     padding: 0.6rem 0;
     border: none;
-    background: #f8fafc;
+    background: var(--background);
     font-size: 0.85rem;
     font-weight: 700;
-    color: #64748b;
+    color: var(--text-secondary);
     cursor: pointer;
     transition: background 0.18s, color 0.18s;
 
@@ -224,7 +224,7 @@ const Wrapper = styled.div`
       color: #fff;
     }
 
-    &:first-child { border-right: 1px solid #e2e8f0; }
+    &:first-child { border-right: 1px solid var(--border); }
   }
 
   /* ── Time preview ─────────────────────────────── */
@@ -234,8 +234,8 @@ const Wrapper = styled.div`
     gap: 0.5rem;
     margin-top: 0.85rem;
     font-size: 0.85rem;
-    color: #475569;
-    background: #f0fdf4;
+    color: var(--text-secondary);
+    background: var(--surface-soft);
     border: 1px solid #bbf7d0;
     border-radius: 8px;
     padding: 0.5rem 0.85rem;
@@ -261,29 +261,29 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.3rem;
     padding: 0.85rem 0.6rem;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border);
     border-radius: 12px;
-    background: #f8fafc;
+    background: var(--background);
     cursor: pointer;
     transition: border-color 0.2s, background 0.2s, transform 0.15s;
     text-align: center;
 
     .pill-icon {
       font-size: 1.25rem;
-      color: #94a3b8;
+      color: var(--text-muted);
       transition: color 0.2s;
     }
 
     .pill-label {
       font-size: 0.85rem;
       font-weight: 700;
-      color: #475569;
+      color: var(--text-secondary);
       transition: color 0.2s;
     }
 
     .pill-desc {
       font-size: 0.7rem;
-      color: #94a3b8;
+      color: var(--text-muted);
       line-height: 1.3;
     }
 
@@ -294,7 +294,7 @@ const Wrapper = styled.div`
 
     &.active {
       border-color: var(--primary);
-      background: #f0fdf4;
+      background: var(--surface-soft);
 
       .pill-icon { color: var(--primary); }
       .pill-label { color: var(--primary); }
@@ -313,7 +313,7 @@ const Wrapper = styled.div`
     font-size: 0.85rem;
     font-weight: 600;
     color: #16a34a;
-    background: #f0fdf4;
+    background: var(--surface-soft);
     border: 1px solid #bbf7d0;
     border-radius: 8px;
     padding: 0.6rem 0.9rem;
@@ -371,8 +371,8 @@ const Wrapper = styled.div`
     justify-content: space-between;
     cursor: pointer;
     padding: 0.7rem 0.85rem;
-    background: #f8fafc;
-    border: 1.5px solid #e2e8f0;
+    background: var(--background);
+    border: 1.5px solid var(--border);
     border-radius: 9px;
     transition: border-color 0.2s;
 
@@ -388,7 +388,7 @@ const Wrapper = styled.div`
   .toggle {
     width: 44px;
     height: 26px;
-    background: #cbd5e1;
+    background: var(--border-strong);
     border-radius: 13px;
     position: relative;
     transition: background 0.25s;
@@ -419,12 +419,12 @@ const Wrapper = styled.div`
   .freq-pill {
     flex: 1;
     padding: 0.5rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
-    background: #f8fafc;
+    background: var(--background);
     font-size: 0.82rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.18s;
 
@@ -432,7 +432,7 @@ const Wrapper = styled.div`
 
     &.active {
       border-color: var(--primary);
-      background: #f0fdf4;
+      background: var(--surface-soft);
       color: var(--primary);
     }
   }
@@ -473,7 +473,7 @@ const Wrapper = styled.div`
     top: 5.5rem;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--card-shadow);
     overflow: hidden;
   }
 
@@ -513,7 +513,7 @@ const Wrapper = styled.div`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.07em;
-    color: #94a3b8;
+    color: var(--text-muted);
     margin: 0 0 0.6rem;
   }
 
@@ -531,10 +531,10 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.45rem;
     font-size: 0.82rem;
-    color: #475569;
+    color: var(--text-secondary);
     text-transform: capitalize;
 
-    &.dim { color: #94a3b8; font-style: italic; }
+    &.dim { color: var(--text-muted); font-style: italic; }
   }
 
   .ing-dot {
@@ -546,7 +546,7 @@ const Wrapper = styled.div`
   }
 
   .ing-qty {
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 0.75rem;
   }
 
@@ -566,7 +566,7 @@ const Wrapper = styled.div`
     min-width: 22px;
     height: 22px;
     background: var(--secondary);
-    color: #fff;
+    color: var(--on-secondary);
     border-radius: 50%;
     font-size: 0.68rem;
     font-weight: 700;
@@ -578,7 +578,7 @@ const Wrapper = styled.div`
 
   .step-text {
     font-size: 0.8rem;
-    color: #475569;
+    color: var(--text-secondary);
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;

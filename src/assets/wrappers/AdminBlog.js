@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--background);
 
   /* ═══════════════════════════════════════════════════════
      TOPBAR (form view)
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
     padding: 0 2rem;
     height: 60px;
     background: #fff;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border);
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
 
@@ -26,16 +26,16 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.45rem;
     padding: 0.4rem 0.85rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
     border-radius: 8px;
     background: #fff;
-    color: #475569;
+    color: var(--text-secondary);
     font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.15s;
-    &:hover { background: #f1f5f9; color: #1e293b; }
+    &:hover { background: var(--surface-soft); color: var(--text-primary); }
   }
 
   .breadcrumb {
@@ -45,9 +45,9 @@ const Wrapper = styled.div`
     flex: 1;
     overflow: hidden;
   }
-  .bc-seg { font-size: 0.82rem; color: #94a3b8; white-space: nowrap; }
-  .bc-seg.current { color: #1e293b; font-weight: 600; }
-  .bc-sep { font-size: 0.6rem; color: #cbd5e1; flex-shrink: 0; }
+  .bc-seg { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
+  .bc-seg.current { color: var(--text-primary); font-weight: 600; }
+  .bc-sep { font-size: 0.6rem; color: var(--border-strong); flex-shrink: 0; }
 
   .topbar-right {
     display: flex;
@@ -58,15 +58,15 @@ const Wrapper = styled.div`
 
   .btn-discard {
     padding: 0.45rem 1rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
     border-radius: 8px;
     background: #fff;
-    color: #64748b;
+    color: var(--text-secondary);
     font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.15s;
-    &:hover { background: #f1f5f9; color: #1e293b; }
+    &:hover { background: var(--surface-soft); color: var(--text-primary); }
   }
 
   .btn-save {
@@ -76,7 +76,7 @@ const Wrapper = styled.div`
     padding: 0.45rem 1.2rem;
     border: none;
     border-radius: 8px;
-    background: var(--secondary, #ff5722);
+    background: var(--secondary, var(--secondary));
     color: #fff;
     font-size: 0.82rem;
     font-weight: 700;
@@ -122,7 +122,7 @@ const Wrapper = styled.div`
   /* ── Cards ────────────────────────────────────────────── */
   .form-card {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     padding: 1.5rem;
     box-shadow: 0 1px 6px rgba(0,0,0,0.05);
@@ -132,8 +132,8 @@ const Wrapper = styled.div`
   }
 
   .card-section-head { display: flex; flex-direction: column; gap: 0.2rem; }
-  .section-title { font-size: 0.92rem; font-weight: 700; color: #1e293b; margin: 0; }
-  .section-sub { font-size: 0.78rem; color: #94a3b8; margin: 0; }
+  .section-title { font-size: 0.92rem; font-weight: 700; color: var(--text-primary); margin: 0; }
+  .section-sub { font-size: 0.78rem; color: var(--text-muted); margin: 0; }
 
   /* ── Fields ───────────────────────────────────────────── */
   .field-group { display: flex; flex-direction: column; gap: 0.35rem; }
@@ -141,25 +141,25 @@ const Wrapper = styled.div`
   .field-label {
     font-size: 0.75rem;
     font-weight: 700;
-    color: #64748b;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
-  .req { color: var(--secondary, #ff5722); margin-left: 2px; }
+  .req { color: var(--secondary, var(--secondary)); margin-left: 2px; }
 
   .field-input {
     padding: 0.6rem 0.85rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 9px;
     font-size: 0.875rem;
-    color: #1e293b;
+    color: var(--text-primary);
     background: #fff;
     outline: none;
     width: 100%;
     transition: border-color 0.15s, box-shadow 0.15s;
     font-family: inherit;
-    &:focus { border-color: var(--secondary, #ff5722); box-shadow: 0 0 0 3px rgba(255,87,34,0.1); }
-    &::placeholder { color: #cbd5e1; }
+    &:focus { border-color: var(--secondary, var(--secondary)); box-shadow: 0 0 0 3px rgba(255,87,34,0.1); }
+    &::placeholder { color: var(--border-strong); }
   }
 
   .title-input {
@@ -170,23 +170,23 @@ const Wrapper = styled.div`
 
   .field-textarea {
     padding: 0.6rem 0.85rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 9px;
     font-size: 0.875rem;
-    color: #1e293b;
+    color: var(--text-primary);
     background: #fff;
     outline: none;
     width: 100%;
     resize: vertical;
     font-family: inherit;
     transition: border-color 0.15s, box-shadow 0.15s;
-    &:focus { border-color: var(--secondary, #ff5722); box-shadow: 0 0 0 3px rgba(255,87,34,0.1); }
-    &::placeholder { color: #cbd5e1; }
+    &:focus { border-color: var(--secondary, var(--secondary)); box-shadow: 0 0 0 3px rgba(255,87,34,0.1); }
+    &::placeholder { color: var(--border-strong); }
   }
 
   .char-count {
     font-size: 0.72rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     text-align: right;
     margin-top: -0.15rem;
   }
@@ -194,17 +194,17 @@ const Wrapper = styled.div`
   /* Quill editor */
   .quill-wrap .ql-toolbar {
     border-radius: 9px 9px 0 0;
-    border-color: #e2e8f0;
-    background: #f8fafc;
+    border-color: var(--border);
+    background: var(--background);
   }
   .quill-wrap .ql-container {
     border-radius: 0 0 9px 9px;
-    border-color: #e2e8f0;
+    border-color: var(--border);
     min-height: 260px;
     font-size: 0.9rem;
   }
   .quill-wrap .ql-container:focus-within {
-    border-color: var(--secondary, #ff5722);
+    border-color: var(--secondary, var(--secondary));
   }
 
   /* Status toggle */
@@ -215,16 +215,16 @@ const Wrapper = styled.div`
   .status-opt {
     flex: 1;
     padding: 0.5rem 0.75rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     background: #fff;
-    color: #64748b;
+    color: var(--text-secondary);
     font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
     text-align: center;
     transition: all 0.15s;
-    &:hover:not(.active) { background: #f1f5f9; }
+    &:hover:not(.active) { background: var(--surface-soft); }
   }
 
   /* Image upload */
@@ -234,11 +234,11 @@ const Wrapper = styled.div`
     aspect-ratio: 16 / 9;
     border-radius: 10px;
     overflow: hidden;
-    border: 2px dashed #cbd5e1;
+    border: 2px dashed var(--border-strong);
     cursor: pointer;
-    background: #f8fafc;
+    background: var(--background);
     transition: border-color 0.2s;
-    &:hover { border-color: var(--secondary, #ff5722); }
+    &:hover { border-color: var(--secondary, var(--secondary)); }
     &:hover .img-overlay { opacity: 1; }
   }
   .img-preview { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -266,11 +266,11 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     text-align: center;
-    small { font-size: 0.72rem; color: #cbd5e1; }
+    small { font-size: 0.72rem; color: var(--border-strong); }
   }
-  .placeholder-icon { font-size: 2rem; color: #cbd5e1; }
+  .placeholder-icon { font-size: 2rem; color: var(--border-strong); }
 
   /* Keywords */
   .keyword-input-row {
@@ -279,10 +279,10 @@ const Wrapper = styled.div`
   }
   .add-kw-btn {
     padding: 0.6rem 0.9rem;
-    border: 1.5px solid var(--secondary, #ff5722);
+    border: 1.5px solid var(--secondary, var(--secondary));
     border-radius: 9px;
     background: #fff;
-    color: var(--secondary, #ff5722);
+    color: var(--secondary, var(--secondary));
     font-size: 0.82rem;
     font-weight: 700;
     cursor: pointer;
@@ -303,7 +303,7 @@ const Wrapper = styled.div`
     padding: 0.22rem 0.65rem;
     border-radius: 20px;
     background: #fff0ec;
-    color: var(--secondary, #ff5722);
+    color: var(--secondary, var(--secondary));
     font-size: 0.75rem;
     font-weight: 600;
     button {
@@ -342,10 +342,10 @@ const Wrapper = styled.div`
   .page-title {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-primary);
     margin: 0;
   }
-  .page-sub { font-size: 0.82rem; color: #94a3b8; margin: 0.2rem 0 0; }
+  .page-sub { font-size: 0.82rem; color: var(--text-muted); margin: 0.2rem 0 0; }
 
   .btn-create {
     display: flex;
@@ -354,7 +354,7 @@ const Wrapper = styled.div`
     padding: 0.55rem 1.2rem;
     border: none;
     border-radius: 9px;
-    background: var(--secondary, #ff5722);
+    background: var(--secondary, var(--secondary));
     color: #fff;
     font-size: 0.85rem;
     font-weight: 700;
@@ -367,7 +367,7 @@ const Wrapper = styled.div`
   /* Filter card */
   .filter-card {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1rem 1.25rem;
     display: flex;
@@ -387,22 +387,22 @@ const Wrapper = styled.div`
     left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 0.8rem;
     pointer-events: none;
   }
   .filter-input {
     width: 100%;
     padding: 0.55rem 2.4rem 0.55rem 2.2rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     font-size: 0.85rem;
-    color: #1e293b;
+    color: var(--text-primary);
     outline: none;
     background: #fff;
     transition: border-color 0.15s;
-    &:focus { border-color: var(--secondary, #ff5722); }
-    &::placeholder { color: #cbd5e1; }
+    &:focus { border-color: var(--secondary, var(--secondary)); }
+    &::placeholder { color: var(--border-strong); }
   }
   .filter-clear-x {
     position: absolute;
@@ -411,7 +411,7 @@ const Wrapper = styled.div`
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: #94a3b8;
+    color: var(--text-muted);
     cursor: pointer;
     font-size: 0.75rem;
     display: flex;
@@ -420,15 +420,15 @@ const Wrapper = styled.div`
 
   .filter-select {
     padding: 0.55rem 0.75rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     font-size: 0.83rem;
-    color: #475569;
+    color: var(--text-secondary);
     background: #fff;
     outline: none;
     cursor: pointer;
     transition: border-color 0.15s;
-    &:focus { border-color: var(--secondary, #ff5722); }
+    &:focus { border-color: var(--secondary, var(--secondary)); }
   }
 
   .filter-clear-btn {
@@ -436,10 +436,10 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.35rem;
     padding: 0.55rem 0.9rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
     border-radius: 8px;
     background: #fff;
-    color: #64748b;
+    color: var(--text-secondary);
     font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
@@ -451,7 +451,7 @@ const Wrapper = styled.div`
   /* Table */
   .table-card {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 1px 6px rgba(0,0,0,0.05);
@@ -467,7 +467,7 @@ const Wrapper = styled.div`
 
   .blog-table thead tr {
     background: #fafbfc;
-    border-bottom: 2px solid #f1f5f9;
+    border-bottom: 2px solid var(--surface-soft);
   }
 
   .blog-table th {
@@ -475,7 +475,7 @@ const Wrapper = styled.div`
     text-align: left;
     font-size: 0.72rem;
     font-weight: 700;
-    color: #94a3b8;
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     white-space: nowrap;
@@ -484,15 +484,15 @@ const Wrapper = styled.div`
   .blog-table td {
     padding: 0.85rem 1rem;
     font-size: 0.875rem;
-    color: #1e293b;
-    border-bottom: 1px solid #f8fafc;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--background);
     vertical-align: middle;
   }
 
   .blog-table tbody tr:last-child td { border-bottom: none; }
   .blog-table tbody tr:hover td { background: #fafbfc; }
 
-  .td-num { color: #94a3b8; font-size: 0.8rem; font-weight: 600; }
+  .td-num { color: var(--text-muted); font-size: 0.8rem; font-weight: 600; }
 
   .td-post {
     display: flex;
@@ -506,17 +506,17 @@ const Wrapper = styled.div`
     border-radius: 6px;
     object-fit: cover;
     flex-shrink: 0;
-    background: #f1f5f9;
+    background: var(--surface-soft);
   }
   .post-thumb-placeholder {
     width: 56px;
     height: 40px;
     border-radius: 6px;
-    background: #f1f5f9;
+    background: var(--surface-soft);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #cbd5e1;
+    color: var(--border-strong);
     font-size: 1rem;
     flex-shrink: 0;
   }
@@ -535,8 +535,8 @@ const Wrapper = styled.div`
     display: inline-block;
     padding: 0.2rem 0.65rem;
     border-radius: 20px;
-    background: #f1f5f9;
-    color: #475569;
+    background: var(--surface-soft);
+    color: var(--text-secondary);
     font-size: 0.72rem;
     font-weight: 700;
     white-space: nowrap;
@@ -552,7 +552,7 @@ const Wrapper = styled.div`
     white-space: nowrap;
   }
 
-  .td-date { color: #64748b; font-size: 0.82rem; white-space: nowrap; }
+  .td-date { color: var(--text-secondary); font-size: 0.82rem; white-space: nowrap; }
 
   .row-actions {
     display: flex;
@@ -582,15 +582,15 @@ const Wrapper = styled.div`
     gap: 0.75rem;
     padding: 4rem 2rem;
     text-align: center;
-    color: #94a3b8;
+    color: var(--text-muted);
   }
-  .empty-icon { font-size: 3rem; color: #e2e8f0; }
-  .empty-state p { font-size: 0.9rem; font-weight: 600; color: #64748b; margin: 0; }
+  .empty-icon { font-size: 3rem; color: var(--border); }
+  .empty-state p { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin: 0; }
   .clear-btn {
     padding: 0.5rem 1.25rem;
     border: none;
     border-radius: 8px;
-    background: var(--secondary, #ff5722);
+    background: var(--secondary, var(--secondary));
     color: #fff;
     font-size: 0.82rem;
     font-weight: 700;
@@ -611,10 +611,10 @@ const Wrapper = styled.div`
     min-width: 36px;
     height: 36px;
     padding: 0 0.65rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     background: #fff;
-    color: #475569;
+    color: var(--text-secondary);
     font-size: 0.83rem;
     font-weight: 600;
     cursor: pointer;
@@ -622,11 +622,11 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    &:hover:not(:disabled):not(.active) { border-color: var(--secondary, #ff5722); color: var(--secondary, #ff5722); }
-    &.active { background: var(--secondary, #ff5722); border-color: var(--secondary, #ff5722); color: #fff; }
+    &:hover:not(:disabled):not(.active) { border-color: var(--secondary, var(--secondary)); color: var(--secondary, var(--secondary)); }
+    &.active { background: var(--secondary, var(--secondary)); border-color: var(--secondary, var(--secondary)); color: #fff; }
     &:disabled { opacity: 0.4; cursor: not-allowed; }
   }
-  .pag-dots { color: #94a3b8; font-size: 0.9rem; padding: 0 0.2rem; }
+  .pag-dots { color: var(--text-muted); font-size: 0.9rem; padding: 0 0.2rem; }
 
   /* ═══════════════════════════════════════════════════════
      DELETE CONFIRMATION MODAL
@@ -656,8 +656,8 @@ const Wrapper = styled.div`
     text-align: center;
   }
   .confirm-icon { font-size: 2.5rem; color: #f59e0b; }
-  .confirm-modal h3 { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin: 0; }
-  .confirm-modal p { font-size: 0.875rem; color: #64748b; margin: 0; line-height: 1.5; }
+  .confirm-modal h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0; }
+  .confirm-modal p { font-size: 0.875rem; color: var(--text-secondary); margin: 0; line-height: 1.5; }
   .confirm-actions {
     display: flex;
     gap: 0.75rem;
@@ -667,14 +667,14 @@ const Wrapper = styled.div`
   .cancel-btn {
     flex: 1;
     padding: 0.6rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 9px;
     background: #fff;
-    color: #64748b;
+    color: var(--text-secondary);
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
-    &:hover { background: #f1f5f9; }
+    &:hover { background: var(--surface-soft); }
   }
   .delete-confirm-btn {
     flex: 1;

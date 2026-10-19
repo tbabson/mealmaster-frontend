@@ -9,8 +9,8 @@ const Wrapper = styled.div`
     width: 100%;
     padding: 0.7rem 1rem;
     background: #fff;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-pill);
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--darkest);
@@ -26,8 +26,8 @@ const Wrapper = styled.div`
 
   .filter-panel {
     background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
     padding: 1.4rem 1.25rem;
     display: flex;
     flex-direction: column;
@@ -69,7 +69,7 @@ const Wrapper = styled.div`
   }
 
   .chip {
-    background: rgba(40, 132, 43, 0.1);
+    background: rgba(53, 132, 56, 0.1);
     color: var(--primary);
     border-radius: 20px;
     padding: 0.2rem 0.65rem;
@@ -97,7 +97,7 @@ const Wrapper = styled.div`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #64748b;
+    color: var(--text-secondary);
     margin-bottom: 0.4rem;
   }
 
@@ -110,7 +110,7 @@ const Wrapper = styled.div`
     left: 0.7rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 0.8rem;
     pointer-events: none;
   }
@@ -118,11 +118,11 @@ const Wrapper = styled.div`
   .filter-input {
     width: 100%;
     padding: 0.55rem 0.75rem 0.55rem 2rem;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    border-radius: 0.85rem;
     font-size: 0.875rem;
     color: var(--darkest);
-    background: #f8fafc;
+    background: var(--background);
     transition: border-color 0.2s, box-shadow 0.2s;
     box-sizing: border-box;
 
@@ -133,7 +133,7 @@ const Wrapper = styled.div`
     &:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(40, 132, 43, 0.12);
+      box-shadow: 0 0 0 3px rgba(53, 132, 56, 0.12);
       background: #fff;
     }
   }
@@ -141,11 +141,11 @@ const Wrapper = styled.div`
   .filter-select {
     width: 100%;
     padding: 0.55rem 0.75rem;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    border-radius: 0.85rem;
     font-size: 0.875rem;
     color: var(--darkest);
-    background: #f8fafc;
+    background: var(--background);
     cursor: pointer;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
@@ -158,7 +158,7 @@ const Wrapper = styled.div`
     &:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(40, 132, 43, 0.12);
+      box-shadow: 0 0 0 3px rgba(53, 132, 56, 0.12);
       background-color: #fff;
     }
   }

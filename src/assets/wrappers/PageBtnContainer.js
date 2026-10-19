@@ -19,12 +19,12 @@ const Wrapper = styled.div`
     min-width: 36px;
     height: 36px;
     padding: 0 0.5rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     background: #fff;
     color: var(--darkest);
     font-size: 0.875rem;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: var(--radius-pill);
     cursor: pointer;
     transition: all 0.2s ease;
     display: inline-flex;
@@ -49,7 +49,7 @@ const Wrapper = styled.div`
     justify-content: center;
     min-width: 32px;
     height: 36px;
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 1rem;
     pointer-events: none;
   }
@@ -59,12 +59,12 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.3rem;
     padding: 0.45rem 1rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     background: #fff;
-    color: #475569;
+    color: var(--text-secondary);
     font-size: 0.85rem;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: var(--radius-pill);
     cursor: pointer;
     transition: all 0.2s ease;
 

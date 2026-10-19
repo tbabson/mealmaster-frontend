@@ -189,7 +189,7 @@ const AdminCart = () => {
                       <td>
                         <div className="customer-cell">
                           <span className="customer-name">
-                            {cart.userId?.name || "—"}
+                            {cart.userId?.fullName || "—"}
                           </span>
                           <span className="customer-email">
                             {cart.userId?.email || "—"}
@@ -284,7 +284,7 @@ const AdminCart = () => {
                 <h2 className="modal-title">Cart Details</h2>
                 <p className="modal-sub">
                   #{shortId(viewCart._id)} &middot;{" "}
-                  {viewCart.userId?.name || "Unknown customer"}
+                  {viewCart.userId?.fullName || "Unknown customer"}
                 </p>
               </div>
               <button className="modal-close" onClick={() => setViewCart(null)}>
@@ -299,7 +299,7 @@ const AdminCart = () => {
                 <div className="info-grid">
                   <div className="info-item">
                     <span className="info-label">Name</span>
-                    <span className="info-val">{viewCart.userId?.name || "—"}</span>
+                    <span className="info-val">{viewCart.userId?.fullName || "—"}</span>
                   </div>
                   <div className="info-item">
                     <span className="info-label">Email</span>

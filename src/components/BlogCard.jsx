@@ -5,7 +5,7 @@ import Wrapper from "../assets/wrappers/BlogCard";
 import DOMPurify from "dompurify";
 
 const BlogCard = ({ blog }) => {
-  const { _id, title, content, featuredImage, author, category, createdAt } =
+  const { _id, slug, title, content, featuredImage, author, category, createdAt } =
     blog;
 
   // Create a temporary div to strip HTML tags for preview
@@ -45,7 +45,7 @@ const BlogCard = ({ blog }) => {
           className="blog-text"
           dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         />
-        <Link to={`/blogs/${_id}`} className="btn">
+        <Link to={`/blogs/${slug || _id}`} className="btn">
           Read More
         </Link>
       </div>

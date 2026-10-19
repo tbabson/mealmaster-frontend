@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
 import { MEAL, DIETARY } from "../utils/constants";
+import { validateIngredients, toIngredientPayload } from "../utils/ingredientPayload";
 import Wrapper from "../assets/wrappers/UpdateMeal";
 import {
   FaArrowLeft,
@@ -79,10 +80,11 @@ const UpdateMeal = () => {
       meal.ingredients?.length
         ? meal.ingredients.map((ing) => ({
             name:          ing.name          || "",
-            quantity:      ing.quantity      || "",
+            // `??` so a stored 0 shows as 0 rather than an empty field
+            quantity:      ing.quantity      ?? "",
             unit:          ing.unit          || "",
             substitutions: Array.isArray(ing.substitutions) ? ing.substitutions : [],
-            price:         ing.price         || "",
+            price:         ing.price         ?? "",
           }))
         : [emptyIngredient()]
     );
@@ -177,6 +179,8 @@ const UpdateMeal = () => {
     if (!mealForm.country.trim()) return toast.error("Country is required");
     const validIngredients = ingredientList.filter((i) => i.name.trim());
     if (!validIngredients.length) return toast.error("Add at least one ingredient");
+    const ingredientError = validateIngredients(validIngredients);
+    if (ingredientError)           return toast.error(ingredientError);
     const validSteps = prepSteps.steps.filter((s) => s.instruction.trim());
     if (!validSteps.length)        return toast.error("Add at least one preparation step");
 
@@ -203,10 +207,10 @@ const UpdateMeal = () => {
       for (let i = 0; i < validIngredients.length; i++) {
         if (i < existingIngrs.length) {
           const eid = existingIngrs[i]._id;
-          await customFetch.patch(`/ingredients/${eid}`, { ...validIngredients[i], meal: mealId });
+          await customFetch.patch(`/ingredients/${eid}`, toIngredientPayload(validIngredients[i], mealId));
           existingIds.delete(eid);
         } else {
-          await customFetch.post("/ingredients", { ...validIngredients[i], meal: mealId });
+          await customFetch.post("/ingredients", toIngredientPayload(validIngredients[i], mealId));
         }
       }
       for (const [id] of existingIds) await customFetch.delete(`/ingredients/${id}`);
@@ -256,7 +260,7 @@ const UpdateMeal = () => {
     );
   }
 
-  const typeStyle = TYPE_COLORS[meal.mealType] || { bg: "#f1f5f9", color: "#64748b" };
+  const typeStyle = TYPE_COLORS[meal.mealType] || { bg: "#f1f5f9", color: "var(--text-secondary)" };
 
   // ── Render ────────────────────────────────────────────────────────────
   return (

@@ -14,11 +14,11 @@ const Wrapper = styled.section`
     margin: 0 0 0.4rem;
     font-size: 1.25rem;
     font-weight: 800;
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   .nr-head h2 svg {
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
   }
 
   .nr-summary {
@@ -38,7 +38,7 @@ const Wrapper = styled.section`
   .nr-card {
     display: flex;
     flex-direction: column;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
     background: #fff;
@@ -55,7 +55,7 @@ const Wrapper = styled.section`
     height: 140px;
     object-fit: cover;
     display: block;
-    background: var(--lightest, #f4faf4);
+    background: var(--lightest, var(--surface-soft));
   }
 
   .nr-body {
@@ -69,19 +69,19 @@ const Wrapper = styled.section`
     margin: 0 0 0.3rem;
     font-size: 1rem;
     font-weight: 800;
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   .nr-meta {
     font-size: 0.76rem;
-    color: #7b8794;
+    color: var(--text-secondary);
     margin-bottom: 0.55rem;
   }
 
   .nr-reason {
     font-size: 0.86rem;
     line-height: 1.65;
-    color: #475569;
+    color: var(--text-secondary);
     margin: 0 0 0.8rem;
   }
 
@@ -98,7 +98,7 @@ const Wrapper = styled.section`
     padding: 0.2rem 0.52rem;
     border-radius: 99px;
     background: #eaf5ea;
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
     text-transform: capitalize;
   }
 
@@ -106,21 +106,21 @@ const Wrapper = styled.section`
     display: flex;
     gap: 0.85rem;
     font-size: 0.74rem;
-    color: #64748b;
+    color: var(--text-secondary);
     padding-top: 0.7rem;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--surface-soft);
     margin-top: auto;
   }
 
   .nr-macros b {
-    color: var(--dark, #143315);
+    color: var(--dark, var(--text-primary));
   }
 
   .nr-link {
     margin-top: 0.8rem;
     font-size: 0.83rem;
     font-weight: 700;
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
     text-decoration: none;
   }
 
@@ -131,7 +131,7 @@ const Wrapper = styled.section`
   .nr-note {
     margin: 1.15rem 0 0;
     font-size: 0.76rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     line-height: 1.65;
   }
 

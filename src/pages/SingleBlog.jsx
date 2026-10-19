@@ -94,7 +94,9 @@ const SingleBlog = () => {
     tags,
   } = blog;
   const sanitizedContent = DOMPurify.sanitize(content);
-  const currentUrl = window.location.href;
+  // Canonical = the slug URL (the one in the sitemap), so /blogs/<id> and
+  // /blogs/<slug> are not indexed as two pages.
+  const currentUrl = `${window.location.origin}/blogs/${slug || blog._id}`;
 
   const breadcrumbItems = [
     { path: "/", label: "Home" },
@@ -176,7 +178,7 @@ const SingleBlog = () => {
           )}
 
           <div className="comments-container">
-            <BlogComments blogId={id} />
+            <BlogComments blogId={blog._id} />
           </div>
         </article>
       </Wrapper>

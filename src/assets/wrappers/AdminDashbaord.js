@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   padding: 1.5rem 2rem 3rem;
-  background: #f8fafc;
+  background: var(--background);
   min-height: 100vh;
 
   /* ── Loading / Error ── */
@@ -232,7 +232,7 @@ const Wrapper = styled.section`
     th {
       text-align: left;
       padding: 0.65rem 0.85rem;
-      background: #f8fafc;
+      background: var(--background);
       color: var(--dark);
       font-weight: 600;
       font-size: 0.78rem;
@@ -244,12 +244,12 @@ const Wrapper = styled.section`
     td {
       padding: 0.75rem 0.85rem;
       color: var(--darkest);
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid var(--surface-soft);
       white-space: nowrap;
     }
 
     tbody tr:last-child td { border-bottom: none; }
-    tbody tr:hover td { background: #fafafa; }
+    tbody tr:hover td { background: var(--background); }
   }
 
   .mono {
@@ -303,9 +303,9 @@ const Wrapper = styled.section`
     .ql-icon { color: var(--secondary); font-size: 1rem; }
 
     &:hover {
-      background: var(--secondary);
+      background: var(--primary);
       color: #fff;
-      border-color: var(--secondary);
+      border-color: var(--primary);
 
       .ql-icon { color: #fff; }
     }

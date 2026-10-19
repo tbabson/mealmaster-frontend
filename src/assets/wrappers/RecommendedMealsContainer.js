@@ -15,7 +15,6 @@ const Wrapper = styled.div`
 .recommended-meals-container h3{
     margin-left: 0;
     text-align: left;
-    font-family: "Roboto", sans-serif;
     font-size: 1.2rem;
     font-weight: 800;
     color: var(--accent-600);
@@ -51,7 +50,6 @@ const Wrapper = styled.div`
     color: var(--secondary-400);
     font-size: 1rem;
     text-transform: capitalize;
-    font-family: "Roboto", sans-serif;
 }
 
 .recommended-meal img {

@@ -127,7 +127,7 @@ const Profile = () => {
     const formData = new FormData();
     formData.append("profileImage", file);
     try {
-      const response = await customFetch.patch("/users/update-profile-image", formData);
+      const response = await customFetch.patch(`/users/${currentUser._id}`, formData);
       dispatch(setUser(response.data.user));
       toast.success("Profile image updated");
     } catch (error) {
@@ -139,7 +139,7 @@ const Profile = () => {
     e.preventDefault();
     setSavingProfile(true);
     try {
-      const response = await customFetch.patch("/users/update-profile", editFormData);
+      const response = await customFetch.patch(`/users/${currentUser._id}`, editFormData);
       dispatch(setUser(response.data.user));
       setShowEditModal(false);
       toast.success("Profile updated");
@@ -155,9 +155,15 @@ const Profile = () => {
     if (passwordFormData.newPassword !== passwordFormData.confirmPassword) {
       toast.error("Passwords do not match"); return;
     }
+    if (passwordFormData.newPassword.length < 8) {
+      toast.error("Password must be at least 8 characters long"); return;
+    }
     setSavingPassword(true);
     try {
-      await customFetch.patch("/users/change-password", passwordFormData);
+      // "/users/change-password" never existed: it matched PATCH /users/:id (profile update),
+      // returned 200 and left the password unchanged.
+      const { oldPassword, newPassword } = passwordFormData;
+      await customFetch.patch("/users/changeUserPassword", { oldPassword, newPassword });
       setShowPasswordModal(false);
       setPasswordFormData({ oldPassword: "", newPassword: "", confirmPassword: "" });
       toast.success("Password changed successfully");

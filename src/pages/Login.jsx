@@ -7,8 +7,8 @@ import {
   useActionData,
 } from "react-router-dom";
 import { useEffect } from "react";
-import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
-import { FormRow, Logo } from "../components";
+import { FormRow } from "../components";
+import AuthShell from "../components/AuthShell";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -21,16 +21,6 @@ const Login = () => {
     location.state?.from?.pathname ||
     location.search.split("from=")[1]?.split("&")[0] ||
     "/";
-
-  const currentHour = new Date().getHours();
-  let mealOfDay;
-  if (currentHour >= 5 && currentHour < 12) {
-    mealOfDay = "Breakfast?";
-  } else if (currentHour >= 12 && currentHour < 17) {
-    mealOfDay = "Lunch?";
-  } else {
-    mealOfDay = "Dinner?";
-  }
 
   // This is to display submitting while submitting.
   const isSubmitting = navigation.state === "submitting";
@@ -53,67 +43,31 @@ const Login = () => {
   }, [navigation.state, from, navigate, isSubmitting, navigation.formData]);
 
   return (
-    <Wrapper>
-      <section>
-        <div className="registerContainer">
-          <div className="caption">
-            <Link to="/" className="logo">
-              <Logo />
-            </Link>
-            <p>
-              Don't know <span>what to cook </span> <br />
-              for {mealOfDay}
-            </p>
-            <p>
-              <span>We got you covered.</span>
-            </p>
-          </div>
-          <div className="registerForm form">
-            <h3>User Login</h3>
-            <Form method="post">
-              {errors?.msg && <p className="form-error">{errors.msg}</p>}
+    <AuthShell title="Welcome back." subtitle="Log in to order, track deliveries and manage your reminders.">
+      <Form method="post">
+        {errors?.msg && <p className="form-error" role="alert">{errors.msg}</p>}
 
-              <FormRow type="email" name="email" labelText="Email" />
-              <FormRow type="password" name="password" labelText="Password" />
+        <FormRow type="email" name="email" labelText="Email" />
+        <FormRow type="password" name="password" labelText="Password" />
 
-              {/* Store the return path in a hidden input */}
-              <input type="hidden" name="returnPath" value={from} />
+        {/* Store the return path in a hidden input */}
+        <input type="hidden" name="returnPath" value={from} />
 
-              {/* Add the role as a hidden input */}
-              <input type="hidden" name="role" value="user" />
+        {/* Add the role as a hidden input */}
+        <input type="hidden" name="role" value="user" />
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn btn-block"
-              >
-                {isSubmitting ? "Logging in..." : "Login"}
-              </button>
+        <button type="submit" disabled={isSubmitting} className="submit-btn">
+          {isSubmitting ? "Logging in..." : "Log in"}
+        </button>
 
-              <div className="forgetPassword">
-                <p>
-                  <Link to="/changePassword" className="member-btn">
-                    Forgot Password?
-                  </Link>
-                </p>
-              </div>
-
-              <div className="divider2"></div>
-
-              <div className="member">
-                <p>
-                  Don't have an account?
-                  <br />
-                  <Link to="/register" className="member-btn">
-                    Sign up
-                  </Link>
-                </p>
-              </div>
-            </Form>
-          </div>
+        <div className="auth-links">
+          <Link to="/changePassword">Forgot your password?</Link>
+          <span>
+            New to MealMaster? <Link to="/register">Create an account</Link>
+          </span>
         </div>
-      </section>
-    </Wrapper>
+      </Form>
+    </AuthShell>
   );
 };
 

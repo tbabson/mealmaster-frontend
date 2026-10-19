@@ -20,6 +20,7 @@ import { MEAL, DIETARY, SORT } from "../utils/constants";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { allMealsQuery } from "../actionsAndLoaders/MealsLoader";
+import { validateIngredients, toIngredientPayload } from "../utils/ingredientPayload";
 
 const TYPE_COLORS = {
   Breakfast: { bg: "#fef9c3", color: "#854d0e" },
@@ -31,7 +32,7 @@ const TYPE_COLORS = {
 };
 
 const DIETARY_COLORS = {
-  none:         { bg: "#f1f5f9", color: "#64748b" },
+  none:         { bg: "#f1f5f9", color: "var(--text-secondary)" },
   vegan:        { bg: "#dcfce7", color: "#166534" },
   vegetarian:   { bg: "#d1fae5", color: "#065f46" },
   "gluten-free":{ bg: "#fef9c3", color: "#854d0e" },
@@ -202,6 +203,8 @@ const AdminMeals = () => {
     if (!mealForm.country.trim()) return toast.error("Country is required");
     const validIngredients = ingredientList.filter((i) => i.name.trim());
     if (!validIngredients.length) return toast.error("Add at least one ingredient");
+    const ingredientError = validateIngredients(validIngredients);
+    if (ingredientError)           return toast.error(ingredientError);
     const validSteps = prepSteps.steps.filter((s) => s.instruction.trim());
     if (!validSteps.length)        return toast.error("Add at least one preparation step");
     if (!imageFile)                return toast.error("Please add a meal image");
@@ -219,7 +222,7 @@ const AdminMeals = () => {
 
       const { data: mRes } = await customFetch.post("/meals", fd);
       const mealId = mRes.meal._id;
-      for (const ing of validIngredients) await customFetch.post("/ingredients", { ...ing, meal: mealId });
+      for (const ing of validIngredients) await customFetch.post("/ingredients", toIngredientPayload(ing, mealId));
       await customFetch.post("/preparationSteps", {
         description: prepSteps.description, skillLevel: prepSteps.skillLevel,
         steps: validSteps, meal: mealId,
@@ -628,7 +631,7 @@ const AdminMeals = () => {
                   </thead>
                   <tbody>
                     {meals.map((meal, idx) => {
-                      const typeStyle = TYPE_COLORS[meal.mealType] || { bg: "#f1f5f9", color: "#64748b" };
+                      const typeStyle = TYPE_COLORS[meal.mealType] || { bg: "#f1f5f9", color: "var(--text-secondary)" };
                       const dietaryList = Array.isArray(meal.dietary) ? meal.dietary.filter(Boolean) : [];
                       return (
                         <tr key={meal._id}>
@@ -661,7 +664,7 @@ const AdminMeals = () => {
                                 <span className="dietary-tag" style={DIETARY_COLORS["none"]}>none</span>
                               ) : (
                                 dietaryList.filter((d) => d !== "none").map((d) => {
-                                  const s = DIETARY_COLORS[d] || { bg: "#f1f5f9", color: "#64748b" };
+                                  const s = DIETARY_COLORS[d] || { bg: "#f1f5f9", color: "var(--text-secondary)" };
                                   return (
                                     <span key={d} className="dietary-tag" style={{ background: s.bg, color: s.color }}>
                                       {d}

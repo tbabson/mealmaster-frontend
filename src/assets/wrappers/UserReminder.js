@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 /* ── Page wrapper ─────────────────────────────────────────────── */
 const Wrapper = styled.div`
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--background);
   padding: 1.75rem 1.75rem 5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -38,7 +38,7 @@ const Wrapper = styled.div`
 
   .page-sub {
     font-size: 0.875rem;
-    color: #64748b;
+    color: var(--text-secondary);
     margin: 0;
   }
 
@@ -75,7 +75,7 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
     background: #fff;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 10px;
     padding: 0.5rem 1rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
@@ -89,7 +89,7 @@ const Wrapper = styled.div`
     .chip-label {
       font-size: 0.75rem;
       font-weight: 600;
-      color: #64748b;
+      color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
@@ -115,7 +115,7 @@ const Wrapper = styled.div`
   .calendar-card {
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--card-shadow);
     overflow: hidden;
     padding: 0.5rem;
   }
@@ -125,7 +125,7 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.4rem;
     font-size: 0.75rem;
-    color: #64748b;
+    color: var(--text-secondary);
     margin: 0.6rem 0 0 0.25rem;
   }
 
@@ -165,8 +165,8 @@ const Wrapper = styled.div`
     transition: background 0.15s;
     min-width: 32px;
 
-    &:hover { background: #f1f5f9; }
-    &:disabled { color: #cbd5e1; cursor: default; }
+    &:hover { background: var(--surface-soft); }
+    &:disabled { color: var(--border-strong); cursor: default; }
   }
 
   .react-calendar__navigation__label {
@@ -182,9 +182,9 @@ const Wrapper = styled.div`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #94a3b8;
+    color: var(--text-muted);
     padding-bottom: 0.25rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
     margin-bottom: 0.25rem;
   }
 
@@ -198,7 +198,7 @@ const Wrapper = styled.div`
     border-radius: 8px;
     font-size: 0.82rem;
     font-weight: 500;
-    color: #475569;
+    color: var(--text-secondary);
     cursor: pointer;
     padding: 0.45rem 0.25rem;
     display: flex;
@@ -209,7 +209,7 @@ const Wrapper = styled.div`
     position: relative;
 
     &:hover {
-      background: #f0fdf4;
+      background: var(--surface-soft);
       color: var(--primary);
     }
 
@@ -217,7 +217,7 @@ const Wrapper = styled.div`
   }
 
   .react-calendar__tile--now {
-    background: #f0fdf4 !important;
+    background: var(--surface-soft) !important;
     color: var(--primary) !important;
     font-weight: 700;
   }
@@ -234,11 +234,11 @@ const Wrapper = styled.div`
   }
 
   .react-calendar__month-view__days__day--neighboringMonth {
-    color: #cbd5e1;
+    color: var(--border-strong);
   }
 
   .react-calendar__month-view__days__day--weekend {
-    color: #64748b;
+    color: var(--text-secondary);
   }
 
   .cal-dot {
@@ -285,12 +285,12 @@ const Wrapper = styled.div`
     padding: 3.5rem 2rem;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--card-shadow);
     gap: 0.65rem;
 
     .empty-icon {
       font-size: 2.75rem;
-      color: #cbd5e1;
+      color: var(--border-strong);
     }
 
     h3 {
@@ -302,7 +302,7 @@ const Wrapper = styled.div`
 
     p {
       font-size: 0.85rem;
-      color: #64748b;
+      color: var(--text-secondary);
       margin: 0;
       max-width: 280px;
     }
@@ -338,7 +338,7 @@ const Wrapper = styled.div`
   .reminder-card {
     background: #fff;
     border-radius: 14px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--card-shadow);
     padding: 1.1rem 1.2rem 0.9rem;
     display: flex;
     flex-direction: column;
@@ -425,8 +425,8 @@ const Wrapper = styled.div`
     font-weight: 700;
     padding: 0.15rem 0.45rem;
     border-radius: 20px;
-    background: #f1f5f9;
-    color: #94a3b8;
+    background: var(--surface-soft);
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
@@ -437,7 +437,7 @@ const Wrapper = styled.div`
     gap: 0.4rem;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--text-secondary);
     margin: 0;
     padding-left: 0.5rem;
 
@@ -449,10 +449,10 @@ const Wrapper = styled.div`
 
   .card-note {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--text-secondary);
     font-style: italic;
-    background: #f8fafc;
-    border-left: 3px solid #e2e8f0;
+    background: var(--background);
+    border-left: 3px solid var(--border);
     padding: 0.35rem 0.6rem;
     border-radius: 0 6px 6px 0;
     margin: 0;
@@ -465,7 +465,7 @@ const Wrapper = styled.div`
   .card-actions {
     display: flex;
     gap: 0.5rem;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--surface-soft);
     padding-top: 0.7rem;
     margin-top: 0.1rem;
   }
@@ -523,12 +523,12 @@ const Wrapper = styled.div`
 export const ModalOverlay = styled(motion.div)`
   position: fixed;
   inset: 0;
-  background: rgba(10, 25, 12, 0.6);
+  background: rgba(36, 49, 41, 0.6);
   backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 2000; /* above the floating navbar (1500) */
   padding: 1rem;
 `;
 
@@ -549,8 +549,8 @@ export const ModalContent = styled(motion.div)`
     justify-content: space-between;
     gap: 0.75rem;
     padding: 1.4rem 1.5rem 1.1rem;
-    border-bottom: 1px solid #f1f5f9;
-    background: linear-gradient(135deg, #143315 0%, #0f2210 100%);
+    border-bottom: 1px solid var(--surface-soft);
+    background: linear-gradient(135deg, var(--text-primary) 0%, #0f2210 100%);
     border-radius: 16px 16px 0 0;
   }
 
@@ -609,17 +609,17 @@ export const ModalContent = styled(motion.div)`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #64748b;
+    color: var(--text-secondary);
   }
 
   .field-input {
     width: 100%;
     padding: 0.6rem 0.85rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 9px;
     font-size: 0.875rem;
     color: var(--darkest);
-    background: #f8fafc;
+    background: var(--background);
     box-sizing: border-box;
     font-family: inherit;
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -627,7 +627,7 @@ export const ModalContent = styled(motion.div)`
     &:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(40, 132, 43, 0.12);
+      box-shadow: 0 0 0 3px rgba(53, 132, 56, 0.12);
       background: #fff;
     }
   }
@@ -644,7 +644,7 @@ export const ModalContent = styled(motion.div)`
     bottom: 0.45rem;
     right: 0.65rem;
     font-size: 0.7rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     pointer-events: none;
   }
 
@@ -654,13 +654,13 @@ export const ModalContent = styled(motion.div)`
     align-items: flex-start;
     gap: 0.85rem;
     padding: 0.75rem 0;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
 
     &:last-child { border-bottom: none; }
   }
 
   .info-icon {
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 0.9rem;
     margin-top: 0.15rem;
     flex-shrink: 0;
@@ -678,7 +678,7 @@ export const ModalContent = styled(motion.div)`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #94a3b8;
+    color: var(--text-muted);
   }
 
   .info-value {
@@ -702,8 +702,8 @@ export const ModalContent = styled(motion.div)`
   }
 
   .note-block {
-    background: #f8fafc;
-    border-left: 3px solid #e2e8f0;
+    background: var(--background);
+    border-left: 3px solid var(--border);
     border-radius: 0 8px 8px 0;
     padding: 0.65rem 0.85rem;
     display: flex;
@@ -712,7 +712,7 @@ export const ModalContent = styled(motion.div)`
 
     p {
       font-size: 0.875rem;
-      color: #475569;
+      color: var(--text-secondary);
       margin: 0;
       line-height: 1.5;
       font-style: italic;
@@ -725,7 +725,7 @@ export const ModalContent = styled(motion.div)`
     align-items: center;
     gap: 0.6rem;
     padding: 1rem 1.5rem 1.4rem;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--surface-soft);
     flex-wrap: wrap;
   }
 
@@ -734,7 +734,7 @@ export const ModalContent = styled(motion.div)`
     align-items: center;
     gap: 0.35rem;
     padding: 0.55rem 1.1rem;
-    background: var(--secondary);
+    background: var(--primary);
     color: #fff;
     border-radius: 8px;
     text-decoration: none;
@@ -744,7 +744,7 @@ export const ModalContent = styled(motion.div)`
     margin-right: auto;
 
     &:hover {
-      background: #e64a19;
+      background: var(--primary-hover);
       transform: translateY(-1px);
     }
   }
@@ -797,17 +797,17 @@ export const ModalContent = styled(motion.div)`
     gap: 0.35rem;
     padding: 0.55rem 1.1rem;
     background: #fff;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--text-secondary);
     cursor: pointer;
     transition: border-color 0.2s, color 0.2s;
     margin-left: auto;
 
     &:hover {
-      border-color: #94a3b8;
+      border-color: var(--text-muted);
       color: var(--darkest);
     }
   }

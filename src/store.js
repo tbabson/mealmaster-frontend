@@ -65,12 +65,9 @@ const cartSyncMiddleware = store => next => action => {
 
     if (syncActions.includes(action.type)) {
         const { cart, user } = store.getState();
-        // Only sync if user is logged in
+        // Only sync if user is logged in (the server identifies them from the cookie)
         if (user?.user?._id) {
-            store.dispatch(syncCart({
-                userId: user.user._id,
-                cartItems: cart.cartItems
-            }));
+            store.dispatch(syncCart({ cartItems: cart.cartItems }));
         }
     }
     return result;

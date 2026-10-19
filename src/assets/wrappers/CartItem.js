@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     background: #fff;
     border-radius: 0.75rem;
     padding: 1.25rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--card-shadow);
     transition: box-shadow 0.2s ease;
 
     &:hover {
@@ -167,7 +167,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: flex-end;
     padding-top: 0.5rem;
-    border-top: 1px dashed #e2e8f0;
+    border-top: 1px dashed var(--border);
   }
 
   .meal-total {

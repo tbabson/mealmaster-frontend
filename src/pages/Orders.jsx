@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import customFetch from "../utils/customFetch";
-import { NutritionRecommendations } from "../components";
+import { NutritionRecommendations, PageHeader } from "../components";
 import { formatDistanceToNow } from "date-fns";
 import Wrapper from "../assets/wrappers/OrdersWrapper";
 import { formatPrice } from "../utils/formatPrice";
@@ -121,9 +121,7 @@ const Orders = () => {
   if (ordersArray.length === 0) {
     return (
       <Wrapper>
-        <div className="page-header">
-          <h1 className="page-title">My Orders</h1>
-        </div>
+        <PageHeader eyebrow="Your orders" title="Nothing on the way yet." />
         <div className="empty-state">
           <IoBagOutline className="empty-icon" />
           <h2>No orders yet</h2>
@@ -138,12 +136,11 @@ const Orders = () => {
 
   return (
     <Wrapper>
-      <div className="page-header">
-        <h1 className="page-title">My Orders</h1>
-        <span className="count-badge">
-          {ordersArray.length} {ordersArray.length === 1 ? "order" : "orders"}
-        </span>
-      </div>
+      <PageHeader
+        eyebrow="Your orders"
+        title="Every meal, from kitchen to door."
+        subtitle={`${ordersArray.length} ${ordersArray.length === 1 ? "order" : "orders"} so far. Track delivery and reorder your favourites.`}
+      />
 
       <div className="orders-grid">
         {ordersArray.map((order) => {

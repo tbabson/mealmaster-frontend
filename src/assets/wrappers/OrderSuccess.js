@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: linear-gradient(160deg, #f0fdf4 0%, #fff 60%);
+  background: linear-gradient(160deg, var(--surface-soft) 0%, #fff 60%);
 
   .page {
     width: 100%;
@@ -100,7 +100,7 @@ const Wrapper = styled.div`
 
   /* ── Order details ── */
   .order-details {
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 0.75rem;
     overflow: hidden;
     margin-bottom: 1.25rem;
@@ -134,8 +134,8 @@ const Wrapper = styled.div`
     align-items: flex-start;
     gap: 0.65rem;
     padding: 0.9rem 1rem;
-    border-bottom: 1px solid #f1f5f9;
-    border-right: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
+    border-right: 1px solid var(--surface-soft);
 
     &:nth-child(2n) {
       border-right: none;
@@ -212,7 +212,7 @@ const Wrapper = styled.div`
     font-size: 0.82rem;
     color: var(--dark);
     line-height: 1.5;
-    background: #f0fdf4;
+    background: var(--surface-soft);
     border: 1px solid #bbf7d0;
     border-radius: 0.5rem;
     padding: 0.65rem 0.9rem;
@@ -264,12 +264,12 @@ const Wrapper = styled.div`
   }
 
   .btn-secondary {
-    background: #f1f5f9;
+    background: var(--surface-soft);
     color: var(--darkest);
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
 
     &:hover {
-      background: #e2e8f0;
+      background: var(--border);
     }
   }
 `;

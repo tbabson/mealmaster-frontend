@@ -1,37 +1,32 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-min-height: 100vh;
-text-align: center;
-display: flex;
-align-items: center;
-justify-content: center;
-img{
-    width: 80vw;
-    max-width: 600px;
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+
+  .error-card {
+    display: grid;
+    justify-items: center;
+    gap: 1.1rem;
+    max-width: 36rem;
+    text-align: center;
+  }
+
+  img {
+    width: min(420px, 80vw);
     display: block;
-    margin-bottom: 2rem;
-    margin-top: -4rem;
-}
-
-h3{
     margin-bottom: 0.5rem;
-font-weight: 800;
-color: var(--grey-900)
-}
+  }
 
-p{
-line-height: 1.5;
-margin-top: 0.5rem;
-margin-bottom: 1rem;
-color: var(--grey-800)
-}
+  h1 { font-size: clamp(2.25rem, 6vw, 3.5rem); }
 
-a{
-color: var(--primary-600);
-text-transform: capitalize;
-}
-`
-export default Wrapper
+  p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+`;
 
-
+export default Wrapper;

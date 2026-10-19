@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import customFetch from "../utils/customFetch";
 import Wrapper from "../assets/wrappers/Nutrition";
-import { Loading, NutritionRecommendations } from "../components";
+import { Loading, NutritionRecommendations, PageHeader } from "../components";
 import { GiHealthNormal } from "react-icons/gi";
 import { FiPieChart, FiTrendingUp, FiCompass } from "react-icons/fi";
 
@@ -137,16 +137,11 @@ const Nutrition = () => {
 
   return (
     <Wrapper>
-      <div className="page-head">
-        <h1>
-          <GiHealthNormal /> Your nutrition
-        </h1>
-        <p>
-          Built from the meals you&apos;ve actually ordered. We compare your
-          average meal against general reference values and suggest dishes that
-          balance it out.
-        </p>
-      </div>
+      <PageHeader
+        eyebrow="Your nutrition"
+        title="Know what's on your plate."
+        subtitle="Built from the meals you've actually ordered. We compare your average meal against general reference values and suggest dishes that balance it out."
+      />
 
       {error && <div className="notice">{error}</div>}
 

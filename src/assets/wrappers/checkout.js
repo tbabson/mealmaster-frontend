@@ -97,7 +97,7 @@ const Wrapper = styled.div`
     background: #fff;
     border-radius: 0.75rem;
     padding: 1.75rem;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--card-shadow);
   }
 
   .card-section-title {
@@ -136,8 +136,8 @@ const Wrapper = styled.div`
     width: 100%;
     padding: 0.6rem 0.85rem;
     border-radius: 0.4rem;
-    background: #f8fafc;
-    border: 1.5px solid #e2e8f0;
+    background: var(--background);
+    border: 1.5px solid var(--border);
     color: var(--darkest);
     font-size: 0.95rem;
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -182,12 +182,12 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 0.9rem;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border);
     border-radius: 0.5rem;
     padding: 0.9rem 1rem;
     cursor: pointer;
     transition: border-color 0.2s, background 0.2s;
-    background: #fafafa;
+    background: var(--background);
 
     input[type="radio"] {
       accent-color: var(--primary);
@@ -231,6 +231,17 @@ const Wrapper = styled.div`
     &:hover:not(.selected) {
       border-color: #a0aec0;
     }
+  }
+
+  /* ── Price confirmation error ── */
+  .price-error {
+    margin-top: 1.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+    font-size: 0.9rem;
   }
 
   /* ── Submit button ── */
@@ -280,9 +291,9 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0;
     padding: 1rem;
-    background: #f8fafc;
+    background: var(--background);
     border-radius: 0.6rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
   }
 
   .transfer-step {
@@ -347,7 +358,7 @@ const Wrapper = styled.div`
 
   /* Bank slip */
   .bank-slip {
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 0.65rem;
     overflow: hidden;
   }
@@ -373,7 +384,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 1.1rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
     gap: 0.5rem;
 
     &:last-child {
@@ -452,8 +463,8 @@ const Wrapper = styled.div`
     cursor: pointer;
     padding: 0.9rem 1rem;
     border-radius: 0.5rem;
-    border: 1.5px solid #e2e8f0;
-    background: #fafafa;
+    border: 1.5px solid var(--border);
+    background: var(--background);
     transition: border-color 0.2s, background 0.2s;
     font-size: 0.9rem;
     font-weight: 500;
@@ -495,7 +506,7 @@ const Wrapper = styled.div`
   .order-item {
     padding-bottom: 1rem;
     margin-bottom: 1rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
 
     &:last-child {
       border-bottom: none;
@@ -541,12 +552,12 @@ const Wrapper = styled.div`
     color: var(--dark);
     padding: 0.3rem 0.5rem;
     border-radius: 0.3rem;
-    background: #f8fafc;
+    background: var(--background);
   }
 
   /* ── Summary totals ── */
   .summary-section {
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--border);
     padding-top: 0.85rem;
   }
 

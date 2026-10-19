@@ -7,7 +7,7 @@ import Wrapper from "../assets/wrappers/checkout";
 import customFetch from "../utils/customFetch";
 import { formatPrice } from "../utils/formatPrice";
 import { FormRow, Loading } from "../components";
-import { clearCart } from "../Features/Cart/cartSlice";
+import { clearCart, refreshCartPrices } from "../Features/Cart/cartSlice";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { MdOutlineLocalShipping, MdPayment } from "react-icons/md";
 import { BsBank2 } from "react-icons/bs";
@@ -32,6 +32,10 @@ const Checkout = () => {
   const { user } = useSelector((state) => state.user);
 
   const [isLoading, setIsLoading] = useState(false);
+  // The server prices every order from the catalogue. Confirm those prices
+  // before showing a total, so the amount shown is the amount charged.
+  const [pricesConfirmed, setPricesConfirmed] = useState(false);
+  const [priceError, setPriceError] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("stripe");
   const [transferConfirmed, setTransferConfirmed] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -60,6 +64,36 @@ const Checkout = () => {
     if (!cartItems.length) navigate("/");
   }, [cartItems, navigate]);
 
+  // Total as the customer last saw it, to tell them if confirmation changed it
+  const [initialTotal] = useState(orderTotal);
+
+  useEffect(() => {
+    if (!user?._id) {
+      setPriceError("Please log in to check out.");
+      return;
+    }
+    dispatch(refreshCartPrices())
+      .unwrap()
+      .then((serverItems) => {
+        setPriceError(null);
+        setPricesConfirmed(true);
+        if (!serverItems?.length) {
+          toast.info("The items in your cart are no longer available.");
+        }
+      })
+      .catch((message) => setPriceError(message || "Could not confirm cart prices"));
+  }, [dispatch, user?._id]);
+
+  useEffect(() => {
+    if (pricesConfirmed && Math.round(initialTotal) !== Math.round(orderTotal)) {
+      toast.info("Some prices have changed since you added these items. Your total has been updated.");
+    }
+    // Only once, when the confirmed prices arrive
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pricesConfirmed]);
+
+  const canPay = pricesConfirmed && !priceError;
+
   const handleShippingChange = (e) => {
     const { name, value } = e.target;
     setShippingInfo({ ...shippingInfo, [name]: value });
@@ -70,6 +104,10 @@ const Checkout = () => {
     const { fullName, address, city, postalCode, country, phone } = shippingInfo;
     if (!fullName || !address || !city || !postalCode || !country || !phone) {
       toast.error("Please fill in all shipping information fields");
+      return;
+    }
+    if (!canPay) {
+      toast.error(priceError || "Still confirming your cart prices — one moment");
       return;
     }
     if (paymentMethod === "stripe") {
@@ -84,11 +122,11 @@ const Checkout = () => {
   const processStripePayment = async () => {
     try {
       setIsLoading(true);
+      // Prices, tax and shipping are computed server-side; the order belongs to
+      // the signed-in user. Only the items and the address are sent.
       const response = await customFetch.post("/payment/create-stripe-session", {
         cartItems,
         shippingAddress: shippingInfo,
-        userId: user._id,
-        totalAmount: orderTotal,
       });
       const stripe = await loadStripe(
         "pk_test_51R3cj1AHONjyWeGBGDT4uBTbaaNSwlPpe7a2kRUrU2q8p79e1gvmL6wsmogs8i6ClS2iEcSvQ0CqQovg15IcED5U00yJwodQfV"
@@ -109,12 +147,6 @@ const Checkout = () => {
       const response = await customFetch.post("/payment/orders/place", {
         cartItems,
         shippingAddress: shippingInfo,
-        paymentMethod: "bankTransfer",
-        paymentResult: { status: "pending", update_time: new Date().toISOString() },
-        taxPrice: tax,
-        shippingPrice: shipping,
-        totalAmount: orderTotal,
-        isPaid: false,
         transactionId: `BT-${Date.now()}`,
       });
       if (response && response.status >= 200 && response.status < 300) {
@@ -242,10 +274,14 @@ const Checkout = () => {
                 </div>
               </div>
 
+              {priceError && (
+                <p className="price-error" role="alert">{priceError}</p>
+              )}
+
               {paymentMethod === "stripe" && (
-                <button className="submit-btn" type="submit" disabled={isLoading}>
+                <button className="submit-btn" type="submit" disabled={isLoading || !canPay}>
                   <IoBagCheckOutline />
-                  {isLoading ? "Processing..." : "Proceed to Payment"}
+                  {isLoading ? "Processing..." : !canPay && !priceError ? "Confirming prices..." : "Proceed to Payment"}
                 </button>
               )}
 
@@ -317,7 +353,7 @@ const Checkout = () => {
                   <button
                     className="submit-btn"
                     type="submit"
-                    disabled={isLoading || !transferConfirmed}
+                    disabled={isLoading || !transferConfirmed || !canPay}
                   >
                     <TbTransfer />
                     {isLoading ? "Processing..." : "Confirm Order"}

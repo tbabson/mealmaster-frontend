@@ -24,7 +24,6 @@ font-size: 1.2rem;
 //padding: 0.5rem 1rem;
 color: var(--primary);
 font-size: 1rem;
-//font-family: "Roboto", sans-serif;
 }
 
 @media (min-width: 700px){

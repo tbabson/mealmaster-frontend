@@ -1,126 +1,87 @@
-import { Logo } from "../components";
+import { Link } from "react-router-dom";
+import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { FiPhone, FiMail, FiMapPin } from "react-icons/fi";
+import { Logo, Reveal } from "../components";
 import Wrapper from "../assets/wrappers/Footer";
-import { Link, NavLink, Form } from "react-router-dom";
-import { FaFacebook } from "react-icons/fa";
-import { PiInstagramLogoFill } from "react-icons/pi";
-import { AiFillTwitterCircle } from "react-icons/ai";
-import { IoCall } from "react-icons/io5";
-import { MdEmail } from "react-icons/md";
-import { MdLocationOn } from "react-icons/md";
 
-const Footer = () => {
-  return (
-    <Wrapper>
-      <div className="footer-container">
-        <div className="footer">
-          <div className="footer-section">
-            <h3 className="footer-title">Get best meal recommendation</h3>
-            <p className="footer-writeup">
-              Get exclusive meal recommendation from our chefs right in your
-              inbox. Subscribe for our newsletter now.
-            </p>
-            <Form className="footer-form">
-              <label htmlFor="email" className="sr-only"></label>
-              <input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                className="footer-input"
-                aria-label="Email address"
-                required
-              />
-              <button type="submit" className="btn-footer">
-                subscribe
-              </button>
-            </Form>
-          </div>
-          <div className="footer-section footer-menu">
-            <h3 className="footer-title">Menu</h3>
-            {/* <NavLink to="/" className="footer-link">
-              Home
-            </NavLink> */}
-            <NavLink to="/" className="footer-link">
-              Home
-            </NavLink>
-            <NavLink to="/cart" className="footer-link">
-              Cart
-            </NavLink>
-            <NavLink to="/profile" className="footer-link">
-              Profile
-            </NavLink>
-            <NavLink to="/blog" className="footer-link">
-              Blog
-            </NavLink>
-          </div>
-          <div className="footer-section footer-contact">
-            <div className="footer-heading">
-              <h3 className="footer-title">Talk to us</h3>
-            </div>
-            <div className="footer-logo">
-              <Link to="/" className="logo">
-                <Logo />
-              </Link>
-            </div>
-            <div className="footer-text">
-              <p>
-                <IoCall className="icon" />
-                +234 703 5689 102
-              </p>
+const COLUMNS = [
+  {
+    title: "Explore",
+    links: [
+      { to: "/meals", label: "Meals" },
+      { to: "/nutrition", label: "Nutrition" },
+      { to: "/blog", label: "Blog" },
+    ],
+  },
+  {
+    title: "Your account",
+    links: [
+      { to: "/profile", label: "Profile" },
+      { to: "/orders", label: "Orders" },
+      { to: "/reminders", label: "Reminders" },
+      { to: "/cart", label: "Cart" },
+    ],
+  },
+];
 
-              <p>
-                <MdEmail className="icon" />
-                Email: info@mealmaster.com
-              </p>
+const SOCIALS = [
+  { href: "https://www.facebook.com", label: "Facebook", Icon: FaFacebookF },
+  { href: "https://www.instagram.com", label: "Instagram", Icon: FaInstagram },
+  { href: "https://www.x.com", label: "X", Icon: FaXTwitter },
+];
 
-              <p>
-                <MdLocationOn className="icon" />
-                151, Acme road, Ogba, Lagos.
-              </p>
-            </div>
+const Footer = () => (
+  <Wrapper>
+    <Reveal className="footer-card" amount={0.15}>
+      <div className="footer-top">
+        <div className="brand">
+          <Link to="/" className="brand-logo" aria-label="MealMaster home">
+            <Logo />
+          </Link>
+          <p className="brand-copy">
+            Recipes, reminders and fresh delivery, so deciding what to eat is
+            the easy part of your day.
+          </p>
+          <div className="socials">
+            {SOCIALS.map(({ href, label, Icon }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                <Icon />
+              </a>
+            ))}
           </div>
         </div>
-        <div className="divider"></div>
-        <div className="footer-bottom">
-          <div className="rite-reserved">
-            <p>&copy; 2025 MealMaster. All rights reserved.</p>
-          </div>
-          <div className="social-media">
-            <Link
-              to="https://www.facebook.com"
-              aria-label="Visit our Facebook page"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaFacebook />
-            </Link>
-            <Link
-              to="https://www.instagram.com"
-              aria-label="Visit our Instagram page"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <PiInstagramLogoFill />
-            </Link>
-            <Link
-              to="https://www.x.com"
-              aria-label="Visit our Twitter page"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <AiFillTwitterCircle />
-            </Link>
-          </div>
-          <div className="terms-conditions">
-            <Link to="/#" className="terms-link">
-              Terms & Conditions
-            </Link>
-            <Link to="/#" className="terms-link">
-              Privacy Policy
-            </Link>
-          </div>
+
+        {COLUMNS.map((col) => (
+          <nav key={col.title} className="footer-col" aria-label={col.title}>
+            <h4>{col.title}</h4>
+            {col.links.map((link) => (
+              <Link key={link.to} to={link.to}>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        ))}
+
+        <div className="footer-col">
+          <h4>Talk to us</h4>
+          <a href="tel:+2347035689102"><FiPhone /> +234 703 5689 102</a>
+          <a href="mailto:info@mealmaster.com"><FiMail /> info@mealmaster.com</a>
+          <span><FiMapPin /> 151, Acme road, Ogba, Lagos.</span>
         </div>
       </div>
-    </Wrapper>
-  );
-};
+
+      <p className="wordmark" aria-hidden="true">MealMaster</p>
+
+      <div className="footer-bottom">
+        <span>&copy; {new Date().getFullYear()} MealMaster</span>
+        <span>Eat well · Keep it simple</span>
+        <span className="legal">
+          <Link to="/#">Terms</Link>
+          <Link to="/#">Privacy</Link>
+        </span>
+      </div>
+    </Reveal>
+  </Wrapper>
+);
+
 export default Footer;

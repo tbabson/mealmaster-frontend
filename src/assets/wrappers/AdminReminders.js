@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   padding: 1.75rem 2rem 4rem;
-  background: #f8fafc;
+  background: var(--background);
   min-height: 100vh;
 
   /* ── Page header ──────────────────────────────── */
@@ -34,7 +34,7 @@ const Wrapper = styled.section`
 
   .page-sub {
     font-size: 0.9rem;
-    color: #64748b;
+    color: var(--text-secondary);
     margin: 0;
   }
 
@@ -43,7 +43,7 @@ const Wrapper = styled.section`
     align-items: center;
     gap: 0.45rem;
     padding: 0.6rem 1.3rem;
-    background: var(--secondary);
+    background: var(--primary);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -54,7 +54,7 @@ const Wrapper = styled.section`
     white-space: nowrap;
 
     &:hover {
-      background: #e04e1e;
+      background: var(--primary-hover);
       transform: translateY(-1px);
     }
   }
@@ -72,7 +72,7 @@ const Wrapper = styled.section`
     align-items: center;
     gap: 0.5rem;
     background: #fff;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 10px;
     padding: 0.5rem 1rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
@@ -86,7 +86,7 @@ const Wrapper = styled.section`
     .chip-label {
       font-size: 0.78rem;
       font-weight: 600;
-      color: #64748b;
+      color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
@@ -110,12 +110,12 @@ const Wrapper = styled.section`
     padding: 5rem 2rem;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--card-shadow);
     gap: 0.75rem;
 
     .empty-icon {
       font-size: 3rem;
-      color: #cbd5e1;
+      color: var(--border-strong);
     }
 
     h3 {
@@ -127,7 +127,7 @@ const Wrapper = styled.section`
 
     p {
       font-size: 0.875rem;
-      color: #64748b;
+      color: var(--text-secondary);
       margin: 0;
     }
   }
@@ -143,7 +143,7 @@ const Wrapper = styled.section`
   .reminder-card {
     background: #fff;
     border-radius: 14px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--card-shadow);
     padding: 1.3rem 1.3rem 1rem;
     display: flex;
     flex-direction: column;
@@ -230,25 +230,25 @@ const Wrapper = styled.section`
     align-items: center;
     gap: 0.45rem;
     font-size: 0.825rem;
-    color: #475569;
+    color: var(--text-secondary);
     margin: 0;
 
-    &.dim { color: #94a3b8; font-style: italic; }
+    &.dim { color: var(--text-muted); font-style: italic; }
   }
 
   .meta-icon {
     font-size: 0.75rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     flex-shrink: 0;
   }
 
   /* ── Card note ────────────────────────────────── */
   .card-note {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--text-secondary);
     font-style: italic;
-    background: #f8fafc;
-    border-left: 3px solid #e2e8f0;
+    background: var(--background);
+    border-left: 3px solid var(--border);
     padding: 0.4rem 0.65rem;
     border-radius: 0 6px 6px 0;
     margin: 0;
@@ -263,7 +263,7 @@ const Wrapper = styled.section`
     display: flex;
     gap: 0.4rem;
     flex-wrap: wrap;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--surface-soft);
     padding-top: 0.85rem;
   }
 
@@ -287,8 +287,8 @@ const Wrapper = styled.section`
 
     &.notify {
       background: #fff8f0;
-      color: #ff5722;
-      &:hover { background: #ff5722; color: #fff; }
+      color: var(--secondary);
+      &:hover { background: var(--secondary); color: var(--on-secondary); }
     }
 
     &.sync {
@@ -320,12 +320,12 @@ const Wrapper = styled.section`
     align-items: center;
     gap: 0.4rem;
     background: none;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     padding: 0.45rem 0.9rem;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--text-secondary);
     cursor: pointer;
     width: fit-content;
     transition: border-color 0.2s, color 0.2s;
@@ -339,14 +339,14 @@ const Wrapper = styled.section`
   .form-card {
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--card-shadow);
     overflow: hidden;
   }
 
   .form-header {
     padding: 1.5rem 2rem 1.25rem;
-    border-bottom: 1px solid #f1f5f9;
-    background: linear-gradient(135deg, #143315 0%, #0f2210 100%);
+    border-bottom: 1px solid var(--surface-soft);
+    background: linear-gradient(135deg, var(--text-primary) 0%, #0f2210 100%);
 
     .form-title {
       font-size: 1.3rem;
@@ -393,18 +393,18 @@ const Wrapper = styled.section`
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #64748b;
+    color: var(--text-secondary);
     margin-bottom: 0.4rem;
   }
 
   .field-input {
     width: 100%;
     padding: 0.6rem 0.85rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     font-size: 0.875rem;
     color: var(--darkest);
-    background: #f8fafc;
+    background: var(--background);
     box-sizing: border-box;
     transition: border-color 0.2s, box-shadow 0.2s;
     appearance: none;
@@ -412,7 +412,7 @@ const Wrapper = styled.section`
     &:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(40, 132, 43, 0.12);
+      box-shadow: 0 0 0 3px rgba(53, 132, 56, 0.12);
       background: #fff;
     }
 
@@ -431,7 +431,7 @@ const Wrapper = styled.section`
     bottom: 0.4rem;
     right: 0.6rem;
     font-size: 0.7rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     pointer-events: none;
   }
 
@@ -442,8 +442,8 @@ const Wrapper = styled.section`
     justify-content: space-between;
     cursor: pointer;
     padding: 0.6rem 0.85rem;
-    background: #f8fafc;
-    border: 1.5px solid #e2e8f0;
+    background: var(--background);
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     transition: border-color 0.2s;
 
@@ -453,7 +453,7 @@ const Wrapper = styled.section`
   .toggle {
     width: 42px;
     height: 24px;
-    background: #cbd5e1;
+    background: var(--border-strong);
     border-radius: 12px;
     position: relative;
     transition: background 0.25s;
@@ -484,7 +484,7 @@ const Wrapper = styled.section`
     gap: 0.75rem;
     margin-top: 1.5rem;
     padding-top: 1.25rem;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--surface-soft);
     flex-wrap: wrap;
   }
 
@@ -494,16 +494,16 @@ const Wrapper = styled.section`
     gap: 0.4rem;
     padding: 0.6rem 1.3rem;
     background: #fff;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     font-size: 0.875rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--text-secondary);
     cursor: pointer;
     transition: border-color 0.2s, color 0.2s;
 
     &:hover {
-      border-color: #94a3b8;
+      border-color: var(--text-muted);
       color: var(--darkest);
     }
   }

@@ -55,9 +55,9 @@ const Wrapper = styled.main`
     flex-wrap: wrap;
     gap: 1rem;
     background: #fff;
-    border-radius: 0.85rem;
+    border-radius: 1.25rem;
     padding: 1.5rem 1.75rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    box-shadow: var(--card-shadow);
     margin-bottom: 1.75rem;
     border-left: 4px solid var(--primary);
   }
@@ -139,8 +139,8 @@ const Wrapper = styled.main`
   /* ── Section cards ── */
   .section-card {
     background: #fff;
-    border-radius: 0.85rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-radius: 1.25rem;
+    box-shadow: var(--card-shadow);
     overflow: hidden;
   }
 
@@ -150,7 +150,7 @@ const Wrapper = styled.main`
     gap: 0.6rem;
     padding: 1rem 1.25rem;
     border-bottom: 2px solid var(--primary);
-    background: #fafafa;
+    background: var(--surface-soft);
 
     h2 {
       font-size: 1rem;
@@ -175,7 +175,7 @@ const Wrapper = styled.main`
     display: flex;
     gap: 1rem;
     padding: 1.1rem 1.25rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
 
     &:last-child { border-bottom: none; }
   }
@@ -231,13 +231,13 @@ const Wrapper = styled.main`
     color: var(--dark);
     padding: 0.25rem 0.5rem;
     border-radius: 0.3rem;
-    background: #f8fafc;
+    background: var(--surface-soft);
   }
 
   /* ── Review ── */
   .review-section {
     margin-top: 0.75rem;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--surface-soft);
     padding-top: 0.75rem;
   }
 
@@ -281,9 +281,9 @@ const Wrapper = styled.main`
   .review-form {
     margin-top: 0.85rem;
     padding: 1rem;
-    background: #f8fafc;
+    background: var(--surface-soft);
     border-radius: 0.55rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
@@ -335,7 +335,7 @@ const Wrapper = styled.main`
     input, textarea {
       width: 100%;
       padding: 0.55rem 0.75rem;
-      border: 1.5px solid #e2e8f0;
+      border: 1.5px solid var(--border);
       border-radius: 0.4rem;
       font-size: 0.9rem;
       background: #fff;
@@ -377,15 +377,15 @@ const Wrapper = styled.main`
 
   .cancel-review {
     padding: 0.55rem 1.25rem;
-    background: #f1f5f9;
+    background: var(--surface-soft);
     color: var(--dark);
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid var(--border);
     border-radius: 0.4rem;
     font-weight: 600;
     font-size: 0.88rem;
     cursor: pointer;
     transition: background 0.2s;
-    &:hover { background: #e2e8f0; }
+    &:hover { background: var(--border); }
   }
 
   /* ── Shipping address ── */
@@ -419,7 +419,7 @@ const Wrapper = styled.main`
     display: flex;
     flex-direction: column;
     gap: 0;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--surface-soft);
   }
 
   .summary-row {
@@ -428,7 +428,7 @@ const Wrapper = styled.main`
     padding: 0.5rem 0;
     font-size: 0.9rem;
     color: var(--dark);
-    border-bottom: 1px solid #f8fafc;
+    border-bottom: 1px solid var(--border);
 
     &:last-child { border-bottom: none; }
 

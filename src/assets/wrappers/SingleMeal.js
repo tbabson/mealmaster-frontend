@@ -30,8 +30,8 @@ const Wrapper = styled.div`
     aspect-ratio: 1 / 1;
     border-radius: 20px;
     overflow: hidden;
-    background: var(--lightest, #f4faf4);
-    border: 1px solid #e8edf3;
+    background: var(--lightest, var(--surface-soft));
+    border: 1px solid var(--border);
     box-shadow: 0 4px 28px rgba(0, 0, 0, 0.08);
   }
 
@@ -52,7 +52,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--light, #daf2da), var(--lightest, #f4faf4));
+    background: linear-gradient(135deg, var(--light, #daf2da), var(--lightest, var(--surface-soft)));
     color: var(--medium, #87a887);
     font-size: 5rem;
   }
@@ -64,7 +64,7 @@ const Wrapper = styled.div`
     justify-content: space-around;
     padding: 1rem 1.25rem;
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 14px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   }
@@ -82,20 +82,20 @@ const Wrapper = styled.div`
     text-transform: uppercase;
     letter-spacing: 0.07em;
     font-weight: 600;
-    color: #94a3b8;
+    color: var(--text-muted);
   }
 
   .qs-value {
     font-size: 0.88rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-primary);
     text-transform: capitalize;
   }
 
   .qs-sep {
     width: 1px;
     height: 32px;
-    background: #e8edf3;
+    background: var(--border);
     flex-shrink: 0;
   }
 
@@ -110,7 +110,7 @@ const Wrapper = styled.div`
   .meal-title {
     font-size: clamp(1.65rem, 3vw, 2.5rem);
     font-weight: 800;
-    color: #1e293b;
+    color: var(--text-primary);
     line-height: 1.15;
     margin: 0;
   }
@@ -150,7 +150,7 @@ const Wrapper = styled.div`
 
   .star {
     font-size: 1.15rem;
-    color: #e2e8f0;
+    color: var(--border);
   }
 
   .star.filled {
@@ -160,12 +160,12 @@ const Wrapper = styled.div`
   .rating-num {
     font-size: 1rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-primary);
   }
 
   .review-count {
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: var(--text-muted);
   }
 
   /* Price box */
@@ -174,9 +174,9 @@ const Wrapper = styled.div`
     flex-direction: column;
     gap: 0.2rem;
     padding: 1.25rem 1.5rem;
-    background: var(--lightest, #f4faf4);
+    background: var(--lightest, var(--surface-soft));
     border-radius: 14px;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
   }
 
   .price-label {
@@ -184,15 +184,14 @@ const Wrapper = styled.div`
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 600;
-    color: #94a3b8;
+    color: var(--text-muted);
   }
 
   .price-value {
     font-size: 2.2rem;
     font-weight: 900;
-    color: var(--secondary, #ff5722);
+    color: var(--secondary, var(--secondary));
     line-height: 1;
-    font-family: "Roboto", sans-serif;
   }
 
   /* CTA buttons */
@@ -211,7 +210,7 @@ const Wrapper = styled.div`
     gap: 0.5rem;
     padding: 0.95rem 1.5rem;
     border-radius: 10px;
-    background: var(--secondary, #ff5722);
+    background: var(--secondary, var(--secondary));
     color: #fff;
     font-size: 1rem;
     font-weight: 700;
@@ -236,16 +235,16 @@ const Wrapper = styled.div`
     padding: 0.95rem 1.5rem;
     border-radius: 10px;
     background: transparent;
-    color: var(--primary, #28842b);
+    color: var(--primary, var(--primary));
     font-size: 1rem;
     font-weight: 700;
-    border: 2px solid var(--primary, #28842b);
+    border: 2px solid var(--primary, var(--primary));
     cursor: pointer;
     transition: background 0.15s;
   }
 
   .btn-reminder:hover {
-    background: var(--lightest, #f4faf4);
+    background: var(--lightest, var(--surface-soft));
   }
 
   /* Prep meta pills */
@@ -262,14 +261,14 @@ const Wrapper = styled.div`
     padding: 0.45rem 1rem;
     border-radius: 999px;
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     font-size: 0.82rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--text-secondary);
   }
 
   .pill-icon {
-    color: var(--secondary, #ff5722);
+    color: var(--secondary, var(--secondary));
     font-size: 0.78rem;
   }
 
@@ -278,7 +277,7 @@ const Wrapper = styled.div`
   ═══════════════════════════════════════════════════════ */
   .content-block {
     background: #fff;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     border-radius: 18px;
     padding: 2rem;
     margin-bottom: 1.75rem;
@@ -291,13 +290,13 @@ const Wrapper = styled.div`
     gap: 0.85rem;
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid var(--lightest, #f4faf4);
+    border-bottom: 2px solid var(--lightest, var(--surface-soft));
   }
 
   .block-title {
     font-size: 1.3rem;
     font-weight: 800;
-    color: #1e293b;
+    color: var(--text-primary);
     margin: 0;
   }
 
@@ -306,9 +305,9 @@ const Wrapper = styled.div`
     font-weight: 700;
     padding: 0.2rem 0.65rem;
     border-radius: 999px;
-    background: var(--lightest, #f4faf4);
-    color: #64748b;
-    border: 1px solid #e8edf3;
+    background: var(--lightest, var(--surface-soft));
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
   }
 
   /* ── Ingredients grid ─────────────────────────────── */
@@ -321,39 +320,39 @@ const Wrapper = styled.div`
   .ing-card {
     padding: 1rem;
     border-radius: 12px;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     background: #fafbfc;
     transition: border-color 0.15s, background 0.15s;
   }
 
   .ing-card:hover {
-    border-color: var(--secondary, #ff5722);
+    border-color: var(--secondary, var(--secondary));
     background: #fff;
   }
 
   .ing-name {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-primary);
     text-transform: capitalize;
     margin-bottom: 0.3rem;
   }
 
   .ing-qty {
     font-size: 0.82rem;
-    color: #64748b;
+    color: var(--text-secondary);
     margin-bottom: 0.25rem;
   }
 
   .ing-price {
     font-size: 0.82rem;
     font-weight: 700;
-    color: var(--secondary, #ff5722);
+    color: var(--secondary, var(--secondary));
   }
 
   .ing-sub {
     font-size: 0.75rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     font-style: italic;
     margin-top: 0.35rem;
     line-height: 1.4;
@@ -370,7 +369,7 @@ const Wrapper = styled.div`
 
   .prep-description {
     font-size: 0.95rem;
-    color: #475569;
+    color: var(--text-secondary);
     line-height: 1.75;
     margin: 0 0 0.85rem;
   }
@@ -399,15 +398,15 @@ const Wrapper = styled.div`
     gap: 1rem;
     padding: 1rem 1.25rem;
     border-radius: 12px;
-    background: var(--lightest, #f4faf4);
-    border-left: 4px solid var(--secondary, #ff5722);
+    background: var(--lightest, var(--surface-soft));
+    border-left: 4px solid var(--secondary, var(--secondary));
   }
 
   .step-badge {
     min-width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: var(--secondary, #ff5722);
+    background: var(--secondary, var(--secondary));
     color: #fff;
     font-size: 0.78rem;
     font-weight: 800;
@@ -419,7 +418,7 @@ const Wrapper = styled.div`
 
   .step-text {
     font-size: 0.92rem;
-    color: #475569;
+    color: var(--text-secondary);
     line-height: 1.75;
     margin: 0;
     padding-top: 0.18rem;
@@ -435,13 +434,13 @@ const Wrapper = styled.div`
   .review-card {
     padding: 1.25rem;
     border-radius: 14px;
-    border: 1px solid #e8edf3;
+    border: 1px solid var(--border);
     background: #fafbfc;
     transition: border-color 0.15s;
   }
 
   .review-card:hover {
-    border-color: #cbd5e1;
+    border-color: var(--border-strong);
   }
 
   .review-top {
@@ -455,7 +454,7 @@ const Wrapper = styled.div`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--primary, #28842b);
+    background: var(--primary, var(--primary));
     color: #fff;
     font-size: 1rem;
     font-weight: 700;
@@ -468,7 +467,7 @@ const Wrapper = styled.div`
   .reviewer-name {
     font-size: 0.88rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-primary);
     display: block;
     margin-bottom: 0.18rem;
     text-transform: capitalize;
@@ -482,20 +481,20 @@ const Wrapper = styled.div`
   .review-title {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #334155;
+    color: var(--text-primary);
     margin: 0 0 0.4rem;
   }
 
   .review-comment {
     font-size: 0.875rem;
-    color: #64748b;
+    color: var(--text-secondary);
     line-height: 1.7;
     margin: 0;
   }
 
   .empty-note {
     font-size: 0.9rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     font-style: italic;
     padding: 0.5rem 0;
     margin: 0;
