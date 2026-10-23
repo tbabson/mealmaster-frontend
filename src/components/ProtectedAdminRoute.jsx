@@ -35,11 +35,12 @@ const ProtectedAdminRoute = ({ children }) => {
   }
 
   // If no user at all, redirect to admin login page
+  // (the admin login page is the /admin index route — there is no /admin/login)
   if (!user) {
     return (
       <Navigate
-        to="/admin/login"
-        state={{ from: "/admin/dashboard" }}
+        to="/admin"
+        state={{ from: location.pathname }}
         replace
       />
     );

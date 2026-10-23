@@ -42,9 +42,15 @@ export const action = (queryClient) => async ({ request }) => {
                     return errors;
                 }
 
-                // Admin login successful
+                // Persist like the user branch does: fetchCurrentUser (used by
+                // ProtectedAdminRoute) skips the request when localStorage has no
+                // user, so without this the dashboard bounced straight back out.
+                localStorage.setItem("user", JSON.stringify(userData));
+
+                // Admin login successful — back to the admin page they were sent
+                // here from, if any
                 toast.success("Admin login successful");
-                return redirect("/admin/dashboard");
+                return redirect(returnPath.startsWith("/admin/") ? returnPath : "/admin/dashboard");
             } catch (error) {
                 errors.msg = "Could not verify admin privileges";
                 return errors;
